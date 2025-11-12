@@ -54,7 +54,11 @@ class ExamCommand extends Command
             if ($question->isCorrect($answer)) {
                 $style->success('Correct!');
             } else {
-                $style->error('The answer is incorrect.');
+                if($question->getLinkAtDocumentation() !== null) {
+                    $style->error('The answer is incorrect. The link at documentation is:' . $question->getLinkAtDocumentation());
+                } else {
+                    $style->error('The answer is incorrect.');
+                }
             }
 
             $progressBar->advance();

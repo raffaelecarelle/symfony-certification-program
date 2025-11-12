@@ -26,7 +26,8 @@ final readonly class ExamFactory
             $finalQuestions[] = new Question(
                 $question['text'],
                 $question['answers'],
-                $question['correctAnswers']
+                $question['correctAnswers'],
+                $question['linkAtDocumentation'] ?? null,
             );
         }
 

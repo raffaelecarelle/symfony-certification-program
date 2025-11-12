@@ -11,6 +11,7 @@ final class Question
         private readonly string $text,
         private readonly array $answers,
         private readonly string $correctAnswers,
+        private readonly string $linkAtDocumentation,
         private bool $isSkipped = false
     ) {
     }
@@ -46,5 +47,10 @@ final class Question
     public function isSkipped(): bool
     {
         return $this->isSkipped;
+    }
+
+    public function getLinkAtDocumentation(): string
+    {
+        return $this->linkAtDocumentation;
     }
 }
