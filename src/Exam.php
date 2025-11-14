@@ -5,7 +5,7 @@ namespace App;
 final readonly class Exam
 {
     /**
-     *  @param array{ text: string, answers: array<string, string>, correctAnswers: string } $questions
+     *  @param Question[] $questions
      */
     public function __construct(
         private array $questions
@@ -13,7 +13,7 @@ final readonly class Exam
     }
 
     /**
-     *  @return array{ text: string, answers: array<string, string>, correctAnswers: string }
+     *  @return Question[]
      */
     public function getQuestions(): array
     {
@@ -27,37 +27,12 @@ final readonly class Exam
 
     public function getCorrectAnswers(): int
     {
-        return count(array_filter($this->questions, fn (Question $question) => $question->isCorrect($question->getCorrectAnswer())));
-    }
-
-    public function getPoints(): int
-    {
-        return $this->getCorrectAnswers() * 10;
+        return count(array_filter($this->questions, fn (Question $question) => $question->isAnsweredCorrectly()));
     }
 
     public function getPercentage(): float
     {
         return $this->getCorrectAnswers() / $this->getNumberOfQuestions() * 100;
-    }
-
-    public function isFinished(): bool
-    {
-        return $this->getNumberOfQuestions() === $this->getCorrectAnswers();
-    }
-
-    public function getRemainingQuestions(): array
-    {
-        return array_filter($this->questions, fn (Question $question) => !$question->isSkipped());
-    }
-
-    public function getSkippedQuestions(): array
-    {
-        return array_filter($this->questions, fn (Question $question) => $question->isSkipped());
-    }
-
-    public function getSkippedCount(): int
-    {
-        return count($this->getSkippedQuestions());
     }
 
     public function getCorrectCount(): int
@@ -78,15 +53,5 @@ final readonly class Exam
     public function getPercentageIncorrect(): float
     {
         return $this->getIncorrectCount() / $this->getNumberOfQuestions() * 100;
-    }
-
-    public function getPercentageSkipped(): float
-    {
-        return $this->getSkippedCount() / $this->getNumberOfQuestions() * 100;
-    }
-
-    public function getPercentageRemaining(): float
-    {
-        return 100 - $this->getPercentageSkipped() - $this->getPercentageCorrect() - $this->getPercentageIncorrect();
     }
 }

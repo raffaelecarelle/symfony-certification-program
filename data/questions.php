@@ -285,4 +285,148 @@ return [
         'correctAnswers' => 'A',
         'linkAtDocumentation' => 'php-doc/reference/errorfunc/functions/restore-error-handler.xml',
     ],
+
+    // Symfony — Console
+    [
+        'text' => 'Console: which constant indicates a successful command execution?',
+        'answers' => [
+            'A' => 'Command::SUCCESS',
+            'B' => 'Command::OK',
+            'C' => 'ExitCode::SUCCESS',
+            'D' => 'STATUS_SUCCESS',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
+    ],
+    [
+        'text' => 'Console: which PHP attribute is used to register a class as a console command?',
+        'answers' => [
+            'A' => 'AsCommand',
+            'B' => 'ConsoleCommand',
+            'C' => 'AsConsole',
+            'D' => 'Command',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
+    ],
+
+    // Symfony — Routing
+    [
+        'text' => 'Routing: which Route attribute option restricts the allowed HTTP methods?',
+        'answers' => [
+            'A' => 'methods',
+            'B' => 'verbs',
+            'C' => 'http',
+            'D' => 'allow',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
+    ],
+    [
+        'text' => 'Routing: in config/routes/attributes.yaml, which value must the type option have to load PHP attributes?',
+        'answers' => [
+            'A' => 'attribute',
+            'B' => 'annotation',
+            'C' => 'php',
+            'D' => 'attributes',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
+    ],
+    [
+        'text' => "Routing: in YAML route definitions, what is the required format for the 'controller' value?",
+        'answers' => [
+            'A' => 'controller_class::method_name',
+            'B' => 'Controller#method',
+            'C' => 'controller.class@method',
+            'D' => 'service_id:method',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
+    ],
+
+    // Symfony — HTTP Cache
+    [
+        'text' => 'HTTP Cache: which YAML value enables the built-in reverse proxy in the prod environment?',
+        'answers' => [
+            'A' => 'http_cache: true',
+            'B' => 'framework.cache: true',
+            'C' => 'cache.http: enabled',
+            'D' => 'reverse_proxy: on',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
+    ],
+
+    // Symfony — Dependency Injection / Tags
+    [
+        'text' => 'Dependency Injection: which service tag registers a service as a Twig extension?',
+        'answers' => [
+            'A' => 'twig.extension',
+            'B' => 'twig.tag',
+            'C' => 'twig.bundle',
+            'D' => 'twig.service',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container/tags.rst',
+    ],
+    [
+        'text' => 'Dependency Injection: which attribute can you apply on an interface to autoconfigure a custom tag?',
+        'answers' => [
+            'A' => 'AutoconfigureTag',
+            'B' => 'Autoconfigure',
+            'C' => 'AsTagged',
+            'D' => 'ServiceTag',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container/tags.rst',
+    ],
+
+    // Symfony — Twig Configuration
+    [
+        'text' => "Twig: what is the default value of the 'default_path' option in TwigBundle configuration?",
+        'answers' => [
+            'A' => '%kernel.project_dir%/templates',
+            'B' => '%kernel.root_dir%/views',
+            'C' => 'templates/',
+            'D' => '%kernel.cache_dir%/twig',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/reference/configuration/twig.rst',
+    ],
+    [
+        'text' => "Twig: what is the default value of 'form_themes'?",
+        'answers' => [
+            'A' => "['form_div_layout.html.twig']",
+            'B' => "['bootstrap_5_layout.html.twig']",
+            'C' => "['form_table_layout.html.twig']",
+            'D' => "['uikit_layout.html.twig']",
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/reference/configuration/twig.rst',
+    ],
+
+    // Symfony — Controllers
+    [
+        'text' => 'Controllers: which helper method of AbstractController generates the URL for a given route?',
+        'answers' => [
+            'A' => 'generateUrl',
+            'B' => 'createUrl',
+            'C' => 'urlFor',
+            'D' => 'buildRoute',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
+    ],
+    [
+        'text' => 'Controllers: which method redirects the user to a route by its name?',
+        'answers' => [
+            'A' => 'redirectToRoute()',
+            'B' => 'redirect()',
+            'C' => 'forwardTo()',
+            'D' => 'goToRoute()',
+        ],
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
+    ],
 ];

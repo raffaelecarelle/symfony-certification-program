@@ -5,7 +5,6 @@ namespace App;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
-use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
@@ -21,7 +20,6 @@ class ExamCommand extends Command
         $style->info(
             <<<EOF
                 The exam has started, you have 75 questions to answer.
-                Question can be skipped by typing "s".
                 Question can have multiple answers, separated by a comma.
             EOF
         );
@@ -43,7 +41,7 @@ class ExamCommand extends Command
             $helper = new QuestionHelper();
             $choiceQuestion = new ChoiceQuestion('', $question->getAnswers());
             $choiceQuestion->setErrorMessage('Answer %s is invalid.');
-            $choiceQuestion->setMultiselect((bool) count(explode(',', $question->getCorrectAnswer())));
+            $choiceQuestion->setMultiselect(count(explode(',', $question->getCorrectAnswer())) > 1);
 
             $answer = $helper->ask($input, $output, $choiceQuestion);
 
@@ -54,8 +52,8 @@ class ExamCommand extends Command
             if ($question->isCorrect($answer)) {
                 $style->success('Correct!');
             } else {
-                if($question->getLinkAtDocumentation() !== null) {
-                    $style->error('The answer is incorrect. The link at documentation is:' . $question->getLinkAtDocumentation());
+                if ($question->getLinkAtDocumentation() !== null) {
+                    $style->error('The answer is incorrect. The link at documentation is: ' . $question->getLinkAtDocumentation());
                 } else {
                     $style->error('The answer is incorrect.');
                 }

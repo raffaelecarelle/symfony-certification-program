@@ -11,9 +11,6 @@ final readonly class ExamFactory
     ) {
     }
 
-    /**
-     * @return array<Question>
-     */
     public function make(): Exam
     {
         $questions = $this->questionProvider->get();
@@ -25,6 +22,7 @@ final readonly class ExamFactory
             $question = $questions[$index];
 
             // Original answers and original correct indexes
+            /** @var array<string, string> $originalAnswers */
             $originalAnswers       = $question['answers'];
             $originalCorrectIndexes = explode(',', $question['correctAnswers']);
 

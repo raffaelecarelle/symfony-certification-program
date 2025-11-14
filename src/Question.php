@@ -12,7 +12,7 @@ final class Question
         private readonly array $answers,
         private readonly string $correctAnswers,
         private readonly ?string $linkAtDocumentation,
-        private bool $isSkipped = false
+        private ?bool $isCorrect = null
     ) {
     }
 
@@ -36,17 +36,15 @@ final class Question
 
     public function isCorrect(string $answer): bool
     {
-        return strtolower($this->correctAnswers) === strtolower($answer);
+        $isCorrect = strtolower($this->correctAnswers) === strtolower($answer);
+        $this->isCorrect = $isCorrect;
+
+        return $isCorrect;
     }
 
-    public function skip(): void
+    public function isAnsweredCorrectly(): bool
     {
-        $this->isSkipped = true;
-    }
-
-    public function isSkipped(): bool
-    {
-        return $this->isSkipped;
+        return $this->isCorrect;
     }
 
     public function getLinkAtDocumentation(): ?string
@@ -55,6 +53,42 @@ final class Question
             return null;
         }
 
+        if (str_starts_with($this->linkAtDocumentation, 'php-doc/')) {
+            return $this->mapPhpDocPathToPhpNetUrl($this->linkAtDocumentation);
+        }
+
         return str_replace(['sf-doc/', '.rst'], ['https://symfony.com/doc/current/', '.html'], $this->linkAtDocumentation);
+    }
+
+    private function mapPhpDocPathToPhpNetUrl(string $docPath): ?string
+    {
+        $prefix = 'php-doc/';
+        $suffix = '.xml';
+
+        if (!str_starts_with($docPath, $prefix) || !str_ends_with($docPath, $suffix)) {
+            return null;
+        }
+
+        // Remove prefix/suffix
+        $core = substr($docPath, strlen($prefix), -strlen($suffix));
+
+        // 1) language/...
+        if (str_starts_with($core, 'language/')) {
+            $slug = str_replace('/', '.', $core);
+        }
+        // 2) reference/*/functions/foo
+        elseif (preg_match('#^reference/[^/]+/functions/([^/]+)$#', $core, $m)) {
+            $slug = 'function.' . $m[1];
+        }
+        // 3) reference/spl/Class/method
+        elseif (preg_match('#^reference/spl/([^/]+)/([^/]+)$#', $core, $m)) {
+            $slug = $m[1] . '.' . $m[2];
+        }
+        // 4) fallback: replace / with .
+        else {
+            $slug = str_replace('/', '.', $core);
+        }
+
+        return 'https://www.php.net/manual/en/' . $slug . '.php';
     }
 }
