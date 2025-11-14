@@ -1,2017 +1,1930 @@
 <?php
 
 return [
-    // 1 - Kernel
+    // Symfony Architecture
     [
-        'text' => 'What is the primary role of the Symfony Kernel?',
+        'text' => "Symfony Flex: which command triggers the recipe to automatically install and configure a package that has one?",
         'answers' => [
-            'A' => 'Handle HTTP requests and return responses',
-            'B' => 'Serve static assets',
-            'C' => 'Manage database migrations',
-            'D' => 'Compile Twig templates'
+            'A' => 'composer require vendor/package',
+            'B' => 'symfony recipe install vendor/package',
+            'C' => 'bin/console flex:install vendor/package',
+            'D' => 'composer symfony:install vendor/package',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/setup.rst',
     ],
     [
-        'text' => 'Which responsibilities belong to the Symfony Kernel? (multiple correct)',
+        'text' => "What is Symfony's backward compatibility (BC) promise for public component APIs?",
         'answers' => [
-            'A' => 'Handle HTTP requests and return responses',
-            'B' => 'Register bundles and services',
-            'C' => 'Execute background jobs natively',
-            'D' => 'Bootstrap the application environment'
+            'A' => 'No promise; APIs can change in any minor',
+            'B' => 'BC guaranteed in patches, possible breaks in minors, no guarantee in majors',
+            'C' => 'BC guaranteed in minors, possible breaks only in majors',
+            'D' => 'BC guaranteed only for official bundles, not for components',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/contributing/community/releases.rst',
     ],
 
-    // 2 - Routing
+    // Controllers
     [
-        'text' => 'What does a route in Symfony map?',
+        'text' => "In a controller extending AbstractController, which method do you use to generate an absolute URL for a route?",
         'answers' => [
-            'A' => 'A URL pattern to a controller',
-            'B' => 'A database table to an entity',
-            'C' => 'A service to an interface',
-            'D' => 'A console command to a user'
+            'A' => '$this->generateUrl(\'route_name\', [], UrlGeneratorInterface::ABSOLUTE_URL)',
+            'B' => '$this->url(\'route_name\', absolute: true)',
+            'C' => '$this->router->absolute(\'route_name\')',
+            'D' => '$this->createUrl(\'route_name\', absolute: true)',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
     ],
     [
-        'text' => 'Which features are available for Symfony routing? (multiple correct)',
+        'text' => "Which AbstractController method redirects to a specific route with HTTP 302 by default?",
         'answers' => [
-            'A' => 'Route parameters',
-            'B' => 'HTTP method requirements',
-            'C' => 'Automatic database indexing',
-            'D' => 'Host and scheme requirements'
+            'A' => 'redirect()',
+            'B' => 'redirectToRoute()',
+            'C' => 'forward()',
+            'D' => 'sendRedirect()',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
     ],
-
-    // 3 - Controllers
-    [
-        'text' => 'What should a Symfony controller return?',
-        'answers' => [
-            'A' => 'An instance of Symfony\\Component\\HttpFoundation\\Response',
-            'B' => 'A raw string only',
-            'C' => 'A Doctrine entity',
-            'D' => 'A Composer package'
-        ],
-        'correctAnswers' => 'A'
-    ],
-    [
-        'text' => 'Which can a controller do in Symfony? (multiple correct)',
-        'answers' => [
-            'A' => 'Return a Response object',
-            'B' => 'Forward to another controller',
-            'C' => 'Directly write to the HTTP socket without a Response',
-            'D' => 'Dispatch events'
-        ],
-        'correctAnswers' => 'A,B,D'
-    ],
-
-    // 4 - Services and Dependency Injection
-    [
-        'text' => 'What is a Symfony service?',
-        'answers' => [
-            'A' => 'An object managed by the service container',
-            'B' => 'A HTTP route',
-            'C' => 'A Twig template',
-            'D' => 'A console command'
-        ],
-        'correctAnswers' => 'A'
-    ],
-    [
-        'text' => 'Which statements describe Symfony services and DI? (multiple correct)',
-        'answers' => [
-            'A' => 'Services are defined in configuration files or PHP',
-            'B' => 'The container resolves dependencies automatically when autowiring is enabled',
-            'C' => 'Services must always be singletons',
-            'D' => 'You can tag services to alter behavior'
-        ],
-        'correctAnswers' => 'A,B,D'
-    ],
-
-    // 5 - Autowiring
-    [
-        'text' => 'What does autowiring do in Symfony?',
-        'answers' => [
-            'A' => 'Automatically injects service dependencies by type',
-            'B' => 'Automatically generates REST endpoints',
-            'C' => 'Compiles assets',
-            'D' => 'Merges configuration files'
-        ],
-        'correctAnswers' => 'A'
-    ],
-    [
-        'text' => 'Autowiring in Symfony can be influenced by which items? (multiple correct)',
-        'answers' => [
-            'A' => 'Type hints in constructors',
-            'B' => 'Service aliases',
-            'C' => 'Routing configuration',
-            'D' => 'Service tags and bindings'
-        ],
-        'correctAnswers' => 'A,B,D'
-    ],
-
-    // 6 - Configuration
-    [
-        'text' => 'Which formats are supported for Symfony configuration?',
-        'answers' => [
-            'A' => 'YAML, XML, PHP, and INI',
-            'B' => 'YAML, XML, PHP',
-            'C' => 'JSON only',
-            'D' => 'PHP only'
-        ],
-        'correctAnswers' => 'B'
-    ],
     [
-        'text' => 'Which configuration tasks are common in Symfony apps? (multiple correct)',
+        'text' => "How do you retrieve a cookie from the Request inside a controller?",
         'answers' => [
-            'A' => 'Setting service defaults',
-            'B' => 'Defining routes',
-            'C' => 'Configuring security firewalls',
-            'D' => 'Editing compiled vendor code'
+            'A' => '$request->cookies->get("name")',
+            'B' => '$request->getCookie("name")',
+            'C' => '$request->headers->get("Cookie-name")',
+            'D' => '$request->cookie("name")',
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
     ],
-
-    // 7 - Console
     [
-        'text' => 'What is the Symfony Console component used for?',
+        'text' => "Which method sets a flash message in the session when using AbstractController?",
         'answers' => [
-            'A' => 'Create and run CLI commands',
-            'B' => 'Serve HTTP requests',
-            'C' => 'Render Twig templates',
-            'D' => 'Migrate databases'
+            'A' => '$this->session()->flash("success", "ok")',
+            'B' => '$this->addFlash("success", "ok")',
+            'C' => '$this->flash()->add("success", "ok")',
+            'D' => '$this->getSession()->addFlash("success", "ok")',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/session.rst',
     ],
     [
-        'text' => 'Symfony console commands can provide which features? (multiple correct)',
+        'text' => "To perform an internal forward to another controller without changing the URL, which method do you use?",
         'answers' => [
-            'A' => 'Input arguments and options',
-            'B' => 'Interactive prompts',
-            'C' => 'Real-time HTTP streaming',
-            'D' => 'Return exit codes'
+            'A' => '$this->forward()',
+            'B' => '$this->redirect()',
+            'C' => '$this->renderController()',
+            'D' => '$this->internalRedirect()',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
     ],
 
-    // 8 - Event Dispatcher
+    // Routing
     [
-        'text' => 'What does the Event Dispatcher component do?',
+        'text' => "With PHP attributes, how do you define a route that accepts only GET and HEAD?",
         'answers' => [
-            'A' => 'Dispatches events to registered listeners and subscribers',
-            'B' => 'Schedules cron jobs',
-            'C' => 'Manages Doctrine entities',
-            'D' => 'Handles form rendering'
+            'A' => "#[Route('/post', methods: ['GET'])]",
+            'B' => "#[Route('/post', methods: ['GET', 'HEAD'])]",
+            'C' => "#[Route('/post', httpMethods: ['GET','HEAD'])]",
+            'D' => "#[Route('/post', method: 'GET|HEAD')]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
     [
-        'text' => 'Which are valid uses of the Event Dispatcher? (multiple correct)',
+        'text' => "In YAML, how do you set a format requirement for a {slug} parameter to allow only lowercase letters and hyphens?",
         'answers' => [
-            'A' => 'Decouple components via events',
-            'B' => 'Modify request or response objects during the request lifecycle',
-            'C' => 'Replace the service container entirely',
-            'D' => 'Implement logging hooks'
+            'A' => "requirements: { slug: '[a-z-]+' }",
+            'B' => "assert: { slug: '[a-z-]+' }",
+            'C' => "requirements: { slug: '[a-z\\-]+' }",
+            'D' => "where: { slug: '[a-z-]+' }",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
-
-    // 9 - Forms
     [
-        'text' => 'What is the primary purpose of the Form component?',
+        'text' => "Which route option do you use for domain (host) matching in YAML?",
         'answers' => [
-            'A' => 'Build, validate and process HTML forms',
-            'B' => 'Store form submissions in the database automatically',
-            'C' => 'Render JavaScript components',
-            'D' => 'Manage user authentication'
+            'A' => 'domain',
+            'B' => 'host',
+            'C' => 'authority',
+            'D' => 'vhost',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
     [
-        'text' => 'Which capabilities belong to Symfony forms? (multiple correct)',
+        'text' => "How do you define a request condition (ExpressionLanguage) for matching a route?",
         'answers' => [
-            'A' => 'Bind data to objects',
-            'B' => 'Handle CSRF protection',
-            'C' => 'Automatically generate JavaScript validation only',
-            'D' => 'Support custom form types'
+            'A' => "condition: 'request.isXmlHttpRequest()'",
+            'B' => "where: 'request.xhr'",
+            'C' => "if: 'request.method == \'POST\''",
+            'D' => "guard: 'is_granted(\'ROLE_USER\')'",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
-
-    // 10 - Validation
     [
-        'text' => 'What is the purpose of the Validator component?',
+        'text' => "Which special route attribute allows handling localization via a URL parameter?",
         'answers' => [
-            'A' => 'Validate objects and values against constraints',
-            'B' => 'Escape HTML to prevent XSS',
-            'C' => 'Optimize database queries',
-            'D' => 'Manage sessions'
+            'A' => '_format',
+            'B' => '_locale',
+            'C' => '_controller',
+            'D' => '_route',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
     [
-        'text' => 'Which are validation features in Symfony? (multiple correct)',
+        'text' => "Which command do you use to debug the available routes?",
         'answers' => [
-            'A' => 'Built-in constraint annotations and YAML/XML definitions',
-            'B' => 'Group-based validation',
-            'C' => 'Automatic SQL injection prevention',
-            'D' => 'Custom constraint creation'
+            'A' => 'bin/console debug:container --route',
+            'B' => 'bin/console router:debug',
+            'C' => 'bin/console debug:router',
+            'D' => 'bin/console route:list',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
 
-    // 11 - Security
-    [
-        'text' => 'Which component handles authentication and authorization in Symfony?',
-        'answers' => [
-            'A' => 'Security',
-            'B' => 'Messenger',
-            'C' => 'Form',
-            'D' => 'Serializer'
-        ],
-        'correctAnswers' => 'A'
-    ],
+    // Twig
     [
-        'text' => 'Which concepts are part of Symfony Security? (multiple correct)',
+        'text' => "Which Twig function generates an absolute URL for a route?",
         'answers' => [
-            'A' => 'Firewalls and access control',
-            'B' => 'Encoders and password hashing',
-            'C' => 'Routing resolution',
-            'D' => 'Voters and role hierarchy'
+            'A' => "url('route_name', {id: 10})",
+            'B' => "path('route_name', {id: 10})",
+            'C' => "link('route_name', {id: 10}, true)",
+            'D' => "absolute_url('route_name', {id: 10})",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // 12 - Sessions
     [
-        'text' => 'Where does Symfony store session data by default in development?',
+        'text' => "Which Twig filter do you use to bypass auto-escaping for a safe string?",
         'answers' => [
-            'A' => 'Files on disk',
-            'B' => 'A Doctrine table',
-            'C' => 'Redis by default',
-            'D' => 'In the service container'
+            'A' => 'noescape',
+            'B' => 'raw',
+            'C' => 'safe',
+            'D' => 'escape(false)',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Which storage options are supported for Symfony sessions? (multiple correct)',
+        'text' => "How do you include a template while passing variables in Twig?",
         'answers' => [
-            'A' => 'Filesystem',
-            'B' => 'PDO/Database',
-            'C' => 'Redis/Memcached',
-            'D' => 'Compile-time embedding into PHP binary'
+            'A' => "{{ include('partial.html.twig', {foo: 'bar'}) }}",
+            'B' => "{% include 'partial.html.twig' with {'foo': 'bar'} only %}",
+            'C' => "{{ render('partial.html.twig', {foo: 'bar'}) }}",
+            'D' => "{% import 'partial.html.twig' as foo with {'foo':'bar'} %}",
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // 13 - Cache
     [
-        'text' => 'What is the Symfony Cache component used for?',
+        'text' => "Which Twig function renders the output of a controller (fragment rendering)?",
         'answers' => [
-            'A' => 'Provide caching abstractions and adapters',
-            'B' => 'Disable HTTP caching',
-            'C' => 'Automatically clear vendor caches',
-            'D' => 'Replace doctrine metadata'
+            'A' => "{{ controller('App\\Controller\\DefaultController::sidebar') }}",
+            'B' => "{{ render(controller('App\\Controller\\DefaultController::sidebar')) }}",
+            'C' => "{{ render_path('route_name') }}",
+            'D' => "{{ path_render('route_name') }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Which cache backends are supported by Symfony Cache? (multiple correct)',
+        'text' => "Which Twig function uses the Translation component to translate a string with variables and domain?",
         'answers' => [
-            'A' => 'Filesystem',
-            'B' => 'APCu',
-            'C' => 'Redis',
-            'D' => 'Automatic ESI compilation'
+            'A' => "{{ trans('message', { '%name%': name }, 'admin') }}",
+            'B' => "{{ translate('message', { '%name%': name }, 'admin') }}",
+            'C' => "{{ t('message', domain='admin', vars={'%name%': name}) }}",
+            'D' => "{{ i18n('message', { '%name%': name }, 'admin') }}",
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/translation.rst',
     ],
 
-    // 14 - HTTP Client
-    [
-        'text' => 'What does the Symfony HttpClient provide?',
-        'answers' => [
-            'A' => 'A simple and performant HTTP client abstraction',
-            'B' => 'A server for hosting the application',
-            'C' => 'A templating engine',
-            'D' => 'A database ORM layer'
-        ],
-        'correctAnswers' => 'A'
-    ],
+    // Forms
     [
-        'text' => 'Features of Symfony HttpClient include: (multiple correct)',
+        'text' => "Which sequence correctly checks submission and validity of a form in a controller?",
         'answers' => [
-            'A' => 'Synchronous and asynchronous requests',
-            'B' => 'Response streaming',
-            'C' => 'Automatic Doctrine hydration',
-            'D' => 'Concurrent requests handling'
+            'A' => '$form->isValid() && $form->isSubmitted()',
+            'B' => '$form->submit($request) && $form->isValid()',
+            'C' => '$form->handleRequest($request); if ($form->isSubmitted() && $form->isValid()) {...}',
+            'D' => '$form->bind($request); if ($form->isValid()) {...}',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
-
-    // 15 - Serializer
     [
-        'text' => 'What is the Serializer component used for?',
+        'text' => "How do you enable CSRF protection for forms in Symfony?",
         'answers' => [
-            'A' => 'Convert objects to/from arrays and strings (JSON, XML)',
-            'B' => 'Serialize PHP sessions to disk',
-            'C' => 'Compress HTTP responses',
-            'D' => 'Manage form rendering'
+            'A' => 'It is enabled by default for forms that extend FormTypeInterface',
+            'B' => 'By adding the _csrf field in the form',
+            'C' => 'By setting csrf_protection: true in the form or globally',
+            'D' => 'By manually registering CsrfTokenManager in the container',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
     [
-        'text' => 'Serializer features include: (multiple correct)',
+        'text' => "Which form event is most suitable to normalize data right after submit and before final validation?",
         'answers' => [
-            'A' => 'Normalization and denormalization',
-            'B' => 'Groups and versioning support',
-            'C' => 'Automatically encrypt payloads',
-            'D' => 'Custom encoders and normalizers'
+            'A' => 'FormEvents::PRE_SUBMIT',
+            'B' => 'FormEvents::SUBMIT',
+            'C' => 'FormEvents::POST_SUBMIT',
+            'D' => 'FormEvents::PRE_SET_DATA',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
-
-    // 16 - Templates / Twig
     [
-        'text' => 'Which templating engine is commonly used with Symfony?',
+        'text' => "Which Form Type do you use to upload a single file and how do you access the UploadedFile object?",
         'answers' => [
-            'A' => 'Twig',
-            'B' => 'Blade',
-            'C' => 'Mustache',
-            'D' => 'Underscore'
+            'A' => 'FileType; $form["file"]->getData() returns UploadedFile',
+            'B' => 'UploadType; $form->getFile()',
+            'C' => 'InputFileType; $request->files->get("file")',
+            'D' => 'BinaryType; $form->getSubmittedFile()',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
     [
-        'text' => 'Twig features include: (multiple correct)',
+        'text' => "How do you apply a specific Twig form theme for a single form within a template?",
         'answers' => [
-            'A' => 'Template inheritance',
-            'B' => 'Filters and functions',
-            'C' => 'Database migrations',
-            'D' => 'Sandboxing for untrusted templates'
+            'A' => "{% form_theme form 'bootstrap_5_layout.html.twig' %}",
+            'B' => "{{ form_theme(form, 'bootstrap_5_layout.html.twig') }}",
+            'C' => "{% use_form_theme form 'bootstrap_5_layout.html.twig' %}",
+            'D' => "{% form_theme 'bootstrap_5_layout.html.twig' for form %}",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
 
-    // 17 - Doctrine (ORM integration)
+    // Validation
     [
-        'text' => 'What does Doctrine provide in a typical Symfony app?',
+        'text' => "How do you define multiple validation groups via PHP attributes on a property?",
         'answers' => [
-            'A' => 'An object-relational mapper (ORM)',
-            'B' => 'Client-side form validation',
-            'C' => 'HTTP caching middleware',
-            'D' => 'A templating engine'
+            'A' => "#[Assert\NotBlank(groups: ['Default','registration'])]",
+            'B' => "#[Groups(['Default','registration'])]",
+            'C' => "#[Assert\Group(['Default','registration'])]",
+            'D' => "#[Assert\NotBlank(groupSequence: ['Default','registration'])]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
     [
-        'text' => 'Doctrine features used with Symfony include: (multiple correct)',
+        'text' => "How do you define a custom GroupSequence at the class level?",
         'answers' => [
-            'A' => 'Entities and repositories',
-            'B' => 'Migrations and schema management',
-            'C' => 'Automatic Twig rendering',
-            'D' => 'QueryBuilder and DQL'
+            'A' => "#[Assert\GroupSequence(['User','Strict'])]",
+            'B' => "#[Assert\GroupSequenceProvider(groups: ['User','Strict'])]",
+            'C' => "#[Assert\Sequence(['User','Strict'])]",
+            'D' => "#[Assert\Groups(['User','Strict'])]",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
-
-    // 18 - Messenger
     [
-        'text' => 'What is the Messenger component used for?',
+        'text' => "What is the correct method to add a manual violation in the Validator inside a Callback?",
         'answers' => [
-            'A' => 'Dispatch messages to handlers, sync or async',
-            'B' => 'Manage user sessions',
-            'C' => 'Render forms',
-            'D' => 'Perform database migrations'
+            'A' => '$context->buildViolation("msg")->addViolation()',
+            'B' => '$context->addViolation("msg")',
+            'C' => '$context->violate("msg")',
+            'D' => '$validator->addViolation("msg")',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
     [
-        'text' => 'Messenger supports which capabilities? (multiple correct)',
+        'text' => "Which constraint checks that a value is unique in a Doctrine table at the entity level?",
         'answers' => [
-            'A' => 'Message routing and handlers',
-            'B' => 'Transport adapters (e.g., AMQP, Redis)',
-            'C' => 'Automatic SQL query generation for REST',
-            'D' => 'Middleware and retries'
+            'A' => 'Unique',
+            'B' => 'UniqueField',
+            'C' => 'UniqueEntity',
+            'D' => 'EntityUnique',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/doctrine.rst',
     ],
 
-    // 19 - Testing
-    [
-        'text' => 'Which tool is recommended for functional and unit testing in Symfony?',
-        'answers' => [
-            'A' => 'PHPUnit',
-            'B' => 'Jest',
-            'C' => 'Mocha',
-            'D' => 'JUnit'
-        ],
-        'correctAnswers' => 'A'
-    ],
+    // Dependency Injection
     [
-        'text' => 'Symfony testing best practices include: (multiple correct)',
+        'text' => "In services.yaml, what is the recommended default setting for service visibility?",
         'answers' => [
-            'A' => 'Use the WebTestCase for functional tests',
-            'B' => 'Mock external services',
-            'C' => 'Directly edit production config during tests',
-            'D' => 'Isolate units with unit tests'
+            'A' => 'public: true',
+            'B' => 'public: false',
+            'C' => 'visibility: private',
+            'D' => 'public_by_default: false',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
-
-    // 20 - Profiler & Debugging
     [
-        'text' => 'What is the Symfony Profiler mainly used for?',
+        'text' => "How do you define a factory for a service in YAML?",
         'answers' => [
-            'A' => 'Collect debugging and performance data for requests',
-            'B' => 'Compile assets',
-            'C' => 'Send emails',
-            'D' => 'Manage user authentication'
+            'A' => "factory: '@app.factory.create'",
+            'B' => "factory: ['@app.factory', 'create']",
+            'C' => "factory_method: 'create'",
+            'D' => "use_factory: app.factory:create",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
     [
-        'text' => 'Profiler and debug toolbar can show: (multiple correct)',
+        'text' => "How do you register a service decorator in YAML?",
         'answers' => [
-            'A' => 'Timeline and performance data',
-            'B' => 'Executed database queries',
-            'C' => 'Full PHP binary contents',
-            'D' => 'Logged messages and exceptions'
+            'A' => "decorates: 'app.inner'",
+            'B' => "decorates: 'app.service'",
+            'C' => "decorate: 'app.service'",
+            'D' => "wrapper_of: 'app.service'",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
-    // 1 - PHP: Traits
     [
-        'text' => 'What is the main purpose of traits in PHP?',
+        'text' => "Which tag must you use to register an EventSubscriber as a service?",
         'answers' => [
-            'A' => 'Reuse methods across unrelated classes',
-            'B' => 'Define namespaces',
-            'C' => 'Declare interfaces',
-            'D' => 'Provide native templating'
+            'A' => 'kernel.event_listener',
+            'B' => 'kernel.event_subscriber',
+            'C' => 'event.subscriber',
+            'D' => 'dispatcher.subscriber',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/event_dispatcher.rst',
     ],
     [
-        'text' => 'Which capabilities are provided by PHP traits? (multiple correct)',
+        'text' => "Where do you add custom CompilerPass classes in a Symfony app?",
         'answers' => [
-            'A' => 'Method reuse in multiple classes',
-            'B' => 'Conflict resolution with insteadof and as',
-            'C' => 'Providing entire class inheritance hierarchies',
-            'D' => 'Declaring constructor signatures for interfaces'
+            'A' => 'In the build() method of the Kernel or Bundle',
+            'B' => 'In config/services.yaml',
+            'C' => 'In the composer.json file',
+            'D' => 'In public/index.php',
         ],
-        'correctAnswers' => 'A,B'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
 
-    // 2 - PHP: Namespaces
+    // Security
     [
-        'text' => 'What is the purpose of namespaces in PHP?',
+        'text' => "In security.yaml, how do you define password hashers for a custom user class?",
         'answers' => [
-            'A' => 'Avoid name collisions between classes and functions',
-            'B' => 'Manage composer packages',
-            'C' => 'Replace autoloading',
-            'D' => 'Provide templating scopes'
+            'A' => "password_hashers: { App\\Entity\\User: 'auto' }",
+            'B' => "encoders: { App\\Entity\\User: 'bcrypt' }",
+            'C' => "hashers: { App\\Entity\\User: 'auto' }",
+            'D' => "password_encoders: { App\\Entity\\User: 'auto' }",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
     [
-        'text' => 'Namespaces in PHP help with which tasks? (multiple correct)',
+        'text' => "Which voter strategy grants access if at least one voter grants it?",
         'answers' => [
-            'A' => 'Organize code logically',
-            'B' => 'Prevent symbol name collisions',
-            'C' => 'Automatically generate docs',
-            'D' => 'Simplify class aliasing with use statements'
+            'A' => 'affirmative',
+            'B' => 'consensus',
+            'C' => 'unanimous',
+            'D' => 'priority',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
-
-    // 3 - HTTP: Content negotiation & Language detection
     [
-        'text' => 'What is content negotiation in HTTP?',
+        'text' => "In the new authentication system (Symfony 6+), which class represents the credentials and badges of a login?",
         'answers' => [
-            'A' => 'Selecting the best representation based on request headers',
-            'B' => 'Encrypting the request payload',
-            'C' => 'Redirecting all requests to a canonical URL',
-            'D' => 'Caching responses only on the client'
+            'A' => 'Passport',
+            'B' => 'TokenInterface',
+            'C' => 'SecurityBadge',
+            'D' => 'UserChecker',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
     [
-        'text' => 'Language detection and content negotiation can use which request headers? (multiple correct)',
+        'text' => "How do you protect a route using a role-based access control?",
         'answers' => [
-            'A' => 'Accept-Language',
-            'B' => 'Accept',
-            'C' => 'X-CSRF-Token',
-            'D' => 'Accept-Encoding'
+            'A' => "access_control: - { path: '^/admin', allow_if: 'has_role(\'ROLE_ADMIN\')' }",
+            'B' => "access_control: - { path: '^/admin', roles: ROLE_ADMIN }",
+            'C' => "access_control: - { path: '^/admin', attributes: ROLE_ADMIN }",
+            'D' => "access_control: - { path: '^/admin', is_granted: ROLE_ADMIN }",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
 
-    // 4 - Symfony Flex
-    [
-        'text' => 'What is Symfony Flex primarily used for?',
-        'answers' => [
-            'A' => 'Automating recipe-based project configuration and package installs',
-            'B' => 'Running the development server',
-            'C' => 'Generating entity migrations',
-            'D' => 'Profiling application performance'
-        ],
-        'correctAnswers' => 'A'
-    ],
+    // HTTP Caching
     [
-        'text' => 'Symfony Flex provides which features? (multiple correct)',
+        'text' => "Which header sets shared cache for 600 seconds with revalidation?",
         'answers' => [
-            'A' => 'Apply recipes to configure packages',
-            'B' => 'Automatically enable bundles',
-            'C' => 'Replace Composer entirely',
-            'D' => 'Add environment-specific configuration'
+            'A' => "Cache-Control: max-age=600, public",
+            'B' => "Cache-Control: s-maxage=600, public",
+            'C' => "Cache-Control: max-age=600, private",
+            'D' => "Cache-Control: s-maxage=600, private",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
-
-    // 5 - Best practices, deprecations and BC promise
     [
-        'text' => 'What is the Symfony Backward Compatibility Promise (BCP)?',
+        'text' => "How do you enable ESI for fragment rendering in Symfony?",
         'answers' => [
-            'A' => 'Contract to avoid breaking changes within major releases except for deprecations',
-            'B' => 'Policy to never deprecate any feature',
-            'C' => 'Automatic migration tool',
-            'D' => 'A linting rule set'
+            'A' => 'By using HttpCache and activating the ESI Surrogate',
+            'B' => 'By enabling twig.esi: true in config/packages/twig.yaml',
+            'C' => 'By adding the EsiBundle',
+            'D' => 'It is not supported in Symfony',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
     [
-        'text' => 'Which practices relate to handling deprecations and BC in Symfony? (multiple correct)',
+        'text' => "Which headers are used for conditional validation on the client side?",
         'answers' => [
-            'A' => 'Mark behavior as deprecated before breaking it in next major',
-            'B' => 'Provide migration guides',
-            'C' => 'Remove deprecated features in a patch release',
-            'D' => 'Log deprecations during tests'
+            'A' => 'ETag and Last-Modified',
+            'B' => 'If-None-Match and If-Modified-Since',
+            'C' => 'Vary and Age',
+            'D' => 'Expires and Cache-Control',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
 
-    // 6 - Assets & Frontend integration
+    // Console
     [
-        'text' => 'What is a common responsibility of asset management in Symfony apps?',
+        'text' => "Which PHP attribute do you add on a Command class to define name and description?",
         'answers' => [
-            'A' => 'Organize and reference CSS/JS assets and their digests',
-            'B' => 'Execute SQL migrations',
-            'C' => 'Schedule cron jobs',
-            'D' => 'Handle service autowiring'
+            'A' => 'AsConsole',
+            'B' => 'AsCommand',
+            'C' => 'ConsoleCommand',
+            'D' => 'CommandName',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
     [
-        'text' => 'Frontend and asset management typically include: (multiple correct)',
+        'text' => "How do you define an option with a required value in a Console command in configure()?",
         'answers' => [
-            'A' => 'Cache busting via fingerprints',
-            'B' => 'Integration with frontend build tools (Webpack, Vite)',
-            'C' => 'Generating database seeders automatically',
-            'D' => 'Serving assets with proper cache headers'
+            'A' => '$this->addOption(\'opt\', \'o\', InputOption::VALUE_REQUIRED)',
+            'B' => '$this->addOption(\'opt\', \'o\', InputOption::REQUIRED)',
+            'C' => '$this->addOption(\'opt\', \'o\')',
+            'D' => '$this->addOption(\'opt\', \'o\', InputArgument::REQUIRED)',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
-
-    // 7 - Translations & Intl component
     [
-        'text' => 'What is the Intl component used for in Symfony?',
+        'text' => "Which built-in helper facilitates interactive questions to the user?",
         'answers' => [
-            'A' => 'Provide internationalization utilities (formatting numbers, dates, locales)',
-            'B' => 'Automatically translate content using external APIs',
-            'C' => 'Compile Twig templates for different locales',
-            'D' => 'Replace the Translation component'
+            'A' => 'DialogHelper',
+            'B' => 'QuestionHelper',
+            'C' => 'AskHelper',
+            'D' => 'PromptHelper',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
     [
-        'text' => 'Translation features in Symfony include: (multiple correct)',
+        'text' => "What is the increasing order of Console verbosity levels?",
         'answers' => [
-            'A' => 'Message catalogs and loaders',
-            'B' => 'Locale-aware pluralization',
-            'C' => 'Automatic runtime translation without message files',
-            'D' => 'Fallback locales'
+            'A' => 'NORMAL < VERBOSE < VERY_VERBOSE < DEBUG',
+            'B' => 'QUIET < NORMAL < VERBOSE < DEBUG',
+            'C' => 'NORMAL < DEBUG < VERBOSE < VERY_VERBOSE',
+            'D' => 'QUIET < NORMAL < DEBUG < VERBOSE',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
 
-    // 8 - DotEnv and ExpressionLanguage
+    // Testing
     [
-        'text' => 'What is DotEnv typically used for in Symfony applications?',
+        'text' => "Which base class do you use for functional tests that simulate HTTP requests in Symfony?",
         'answers' => [
-            'A' => 'Load environment variables from a .env file for local development',
-            'B' => 'Manage service wiring',
-            'C' => 'Encrypt configuration values',
-            'D' => 'Define routing rules'
+            'A' => 'KernelTestCase',
+            'B' => 'WebTestCase',
+            'C' => 'HttpClientTestCase',
+            'D' => 'FunctionalTestCase',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
     [
-        'text' => 'ExpressionLanguage in Symfony can be used for: (multiple correct)',
+        'text' => "How do you get the Crawler after a GET request in the test client?",
         'answers' => [
-            'A' => 'Evaluate dynamic configuration expressions',
-            'B' => 'Define security access control expressions',
-            'C' => 'Compile Twig templates',
-            'D' => 'Build complex service container parameter values'
+            'A' => '$client->request(\'GET\', \'/\')->crawler',
+            'B' => '$crawler = $client->request(\'GET\', \'/\')',
+            'C' => '$client->getCrawler(\'GET\', \'/\')',
+            'D' => '$crawler = $client->send(\'GET\', \'/\')',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
-
-    // 9 - Filesystem & Finder components
     [
-        'text' => 'What is the Finder component used for?',
+        'text' => "How do you enable the profiler in a functional test?",
         'answers' => [
-            'A' => 'Locate files and directories using fluent rules',
-            'B' => 'Store files in a database',
-            'C' => 'Serve static assets',
-            'D' => 'Monitor file system events in real time'
+            'A' => '$client->enableProfiler()',
+            'B' => '$client->getProfile()->enable()',
+            'C' => '$client->startProfiler()',
+            'D' => '$client->debug(true)',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
     [
-        'text' => 'Filesystem and Finder tasks include: (multiple correct)',
+        'text' => "How do you access the service container in an integration test extending KernelTestCase?",
         'answers' => [
-            'A' => 'Copying and removing files programmatically',
-            'B' => 'Searching files by name and date',
-            'C' => 'Automatically versioning files in Git',
-            'D' => 'Creating directories with specific permissions'
+            'A' => 'static::getContainer()',
+            'B' => '$this->getContainer()',
+            'C' => 'self::$container',
+            'D' => 'Container::getInstance()',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
 
-    // 10 - Mailer / Mime / Notifier
-    [
-        'text' => 'What is the Symfony Mailer component primarily for?',
-        'answers' => [
-            'A' => 'Compose and send emails via different transports',
-            'B' => 'Store email history in Doctrine automatically',
-            'C' => 'Serve SMTP servers',
-            'D' => 'Replace PSR-7 messages'
-        ],
-        'correctAnswers' => 'A'
-    ],
+    // Miscellaneous
     [
-        'text' => 'Notifier and Mailer can be used to: (multiple correct)',
+        'text' => "How do you define a default environment variable with Dotenv?",
         'answers' => [
-            'A' => 'Send emails, SMS, and push notifications via transports',
-            'B' => 'Create Mime messages with attachments',
-            'C' => 'Automatically translate message content without templates',
-            'D' => 'Queue notifications for async delivery'
+            'A' => 'In .env: FOO=bar',
+            'B' => 'In .env.local: FOO=bar',
+            'C' => 'In phpunit.xml.dist as <server name="FOO" value="bar"/>',
+            'D' => 'In .env.dist: FOO=bar as an example',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,D',
+        'linkAtDocumentation' => 'sf-doc/configuration.rst',
     ],
-
-    // 11 - Lock, Scheduler and Rate Limiter
     [
-        'text' => 'What is the Lock component used for?',
+        'text' => "Which Cache component adapter stores data on the filesystem?",
         'answers' => [
-            'A' => 'Coordinate access to shared resources across processes',
-            'B' => 'Implement rate limiting for HTTP endpoints',
-            'C' => 'Schedule recurring tasks',
-            'D' => 'Encrypt local files'
+            'A' => 'FilesystemAdapter',
+            'B' => 'ArrayAdapter',
+            'C' => 'PhpFilesAdapter',
+            'D' => 'DoctrineAdapter',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/cache.rst',
     ],
     [
-        'text' => 'Which capabilities relate to Lock, Scheduler and Rate Limiter? (multiple correct)',
+        'text' => "With Messenger, how do you configure dispatching commands to an AMQP queue named messages?",
         'answers' => [
-            'A' => 'Distributed locks via backends like Redis',
-            'B' => 'Enforce request quotas per client',
-            'C' => 'Native cron-like scheduling within Symfony core',
-            'D' => 'Retry and backoff strategies for scheduled jobs'
+            'A' => "routing: { 'App\\Message\\MyCommand': amqp } and defined amqp transport",
+            'B' => "bus: command on transport: messages",
+            'C' => "transports: [amqp: 'amqp://localhost/%2f/messages']",
+            'D' => "middleware: amqp_queue('messages')",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/messenger.rst',
     ],
-
-    // 12 - Runtime and Clock components
     [
-        'text' => 'What is the Symfony Runtime component responsible for?',
+        'text' => "In the Serializer component, which normalizer automatically handles objects with public getters/setters?",
         'answers' => [
-            'A' => 'Provide the entrypoint logic to run PHP applications in different environments (CLI, FPM, RoadRunner, etc.)',
-            'B' => 'Manage service autowiring',
-            'C' => 'Handle form submission lifecycle',
-            'D' => 'Serve static assets'
+            'A' => 'ObjectNormalizer',
+            'B' => 'PropertyNormalizer',
+            'C' => 'GetSetMethodNormalizer',
+            'D' => 'SerializerNormalizer',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/serializer.rst',
     ],
     [
-        'text' => 'Clock and Runtime components can help with: (multiple correct)',
+        'text' => "Finder: how do you select all .php files recursively while excluding the vendor directory?",
         'answers' => [
-            'A' => 'Abstracting time source for easier testing',
-            'B' => 'Choosing different application runners',
-            'C' => 'Automatically converting timezones in templates',
-            'D' => 'Deterministic time in tests'
+            'A' => "Finder::create()->files()->in(__DIR__)->exclude('vendor')->name('*.php')",
+            'B' => "Finder::create()->files()->path('!vendor')->name('*.php')",
+            'C' => "Finder::create()->files()->notIn('vendor')->name('*.php')",
+            'D' => "Finder::create()->in(__DIR__)->filter('!vendor')->name('*.php')",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/finder.rst',
     ],
     [
-        'text' => 'What is the primary purpose of a Symfony bundle?',
+        'text' => "Mailer: how do you send a simple email in a controller using MailerInterface?",
         'answers' => [
-            'A' => 'Package and reuse related features (controllers, services, config)',
-            'B' => 'Provide a database schema',
-            'C' => 'Replace the Kernel',
-            'D' => 'Manage frontend assets only'
+            'A' => '$email = (new Email())->from(\'a@b\')->to(\'c@d\')->subject(\'S\')->text(\'T\'); $mailer->send($email);',
+            'B' => '$message = Swift_Message::newInstance()->setSubject(\'S\'); $mailer->send($message);',
+            'C' => '$mailer->send(\'a@b\',\'c@d\',\'S\',\'T\');',
+            'D' => '$mailer->mail((new Email())->to(\'c@d\'));',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/mailer.rst',
     ],
     [
-        'text' => 'Which actions relate to Symfony bundles? (multiple correct)',
+        'text' => "Web Profiler: which package/bundle enables the debug toolbar in the dev environment?",
         'answers' => [
-            'A' => 'Group related code and resources',
-            'B' => 'Be enabled per environment',
-            'C' => 'Automatically run Doctrine migrations',
-            'D' => 'Expose configuration to the host application'
+            'A' => 'symfony/profiler-bundle',
+            'B' => 'symfony/web-profiler-bundle',
+            'C' => 'symfony/debug-bundle',
+            'D' => 'symfony/var-dumper',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/profiler.rst',
     ],
-
-    // Deployment
     [
-        'text' => 'What is a common deployment task for Symfony applications?',
+        'text' => "Lock component: which store is suitable for distributed multi-process locks?",
         'answers' => [
-            'A' => 'Warm up the cache',
-            'B' => 'Reinstall Composer on every request',
-            'C' => 'Compile PHP source to binary',
-            'D' => 'Commit vendor/ to git'
+            'A' => 'FlockStore',
+            'B' => 'SemaphoreStore',
+            'C' => 'RedisStore',
+            'D' => 'InMemoryStore',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/lock.rst',
     ],
     [
-        'text' => 'Which steps are typical in a Symfony deployment pipeline? (multiple correct)',
+        'text' => "HttpClient: which method sends a GET request and returns a ResponseInterface?",
         'answers' => [
-            'A' => 'Run database migrations',
-            'B' => 'Warm up the cache and dump prod assets',
-            'C' => 'Enable debug mode on production',
-            'D' => 'Clear and warmup container caches'
+            'A' => '$client->request(\'GET\', \'https://example.com\')',
+            'B' => '$client->get(\'https://example.com\')',
+            'C' => 'HttpClient::get(\'https://example.com\')',
+            'D' => 'new Request(\'GET\',\'https://example.com\')',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_client.rst',
     ],
-
-    // HTTP Cache
     [
-        'text' => 'What is the purpose of HTTP caching in Symfony?',
+        'text' => "RateLimiter: how do you create a token bucket limiter per IP via YAML configuration?",
         'answers' => [
-            'A' => 'Reduce response latency and backend load by caching responses',
-            'B' => 'Encrypt HTTP payloads',
-            'C' => 'Serve dynamic content only',
-            'D' => 'Replace TLS'
+            'A' => "framework: rate_limiter: api: policy: 'token_bucket'" ,
+            'B' => "framework: rate_limiter: api: policy: 'sliding_window'",
+            'C' => "framework: rate_limiter: api: policy: 'fixed_window'",
+            'D' => "framework: rate_limiter: api: policy: 'bucket'",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/rate_limiter.rst',
     ],
     [
-        'text' => 'Which features relate to Symfony HTTP cache and reverse proxies? (multiple correct)',
+        'text' => "Scheduler: which annotation/attribute allows scheduling a command?",
         'answers' => [
-            'A' => 'HTTP cache-control headers and max-age',
-            'B' => 'Edge Side Includes (ESI) for fragment caching',
-            'C' => 'Automatic SQL query caching',
-            'D' => 'Surrogate control and Vary header handling'
+            'A' => 'AsScheduledTask',
+            'B' => 'Schedule',
+            'C' => 'AsCommand + configuration in the Scheduler',
+            'D' => 'CronTask',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/scheduler.rst',
     ],
-
-    // Logging
     [
-        'text' => 'Which library is commonly used for logging in Symfony applications?',
+        'text' => "Translation: how do you handle pluralization in Twig?",
         'answers' => [
-            'A' => 'Monolog',
-            'B' => 'Log4j',
-            'C' => 'Winston',
-            'D' => 'SLF4J'
+            'A' => "{{ transchoice('msg', count) }}",
+            'B' => "{{ trans({'%count%': count}, 'messages', count) }}",
+            'C' => "{{ 'msg'|trans({'%count%': count}, 'messages') }}",
+            'D' => "{{ 'msg'|transchoice(count) }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/translation.rst',
     ],
     [
-        'text' => 'Which logging features are available in Symfony via Monolog? (multiple correct)',
+        'text' => "Workflow: how do you define a transition from draft to published in YAML?",
         'answers' => [
-            'A' => 'Multiple handlers (files, syslog, errors)',
-            'B' => 'Processors to add extra context to records',
-            'C' => 'Automatic rollback of transactions',
-            'D' => 'Channel-based configuration'
+            'A' => "transitions: publish: from: draft to: published",
+            'B' => "transitions: - { name: publish, from: draft, to: published }",
+            'C' => "steps: publish: draft -> published",
+            'D' => "edges: publish: draft > published",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/workflow.rst',
     ],
-
-    // Mercure
     [
-        'text' => 'What is Mercure used for in Symfony?',
+        'text' => "Routing: how do you define default values for {page} in YAML?",
         'answers' => [
-            'A' => 'Real-time push updates (server-to-browser) using a hub',
-            'B' => 'Storing large files',
-            'C' => 'Running background workers',
-            'D' => 'Managing database migrations'
+            'A' => "defaults: { page: 1 }",
+            'B' => "default: { page: 1 }",
+            'C' => "options: { page: 1 }",
+            'D' => "vars: { page: 1 }",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
     [
-        'text' => 'Mercure features include: (multiple correct)',
+        'text' => "Controller: how do you return a properly typed JSON Response?",
         'answers' => [
-            'A' => 'Publishing updates to topics',
-            'B' => 'JWT-based publisher authentication',
-            'C' => 'Automatic form generation',
-            'D' => 'Subscriber reconnection support in browsers'
+            'A' => 'return new JsonResponse(["ok"=>true]);',
+            'B' => 'return $this->json(["ok"=>true]);',
+            'C' => 'return Response::json(["ok"=>true]);',
+            'D' => 'return $this->response()->json(["ok"=>true]);',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/controller.rst',
     ],
-
-    // HTML Sanitizer
     [
-        'text' => 'What is the purpose of the HTML Sanitizer component?',
+        'text' => "Session: what is the default key used for flash messages?",
         'answers' => [
-            'A' => 'Remove or neutralize unsafe HTML content before rendering',
-            'B' => 'Minify CSS files',
-            'C' => 'Translate strings for templates',
-            'D' => 'Provide routing helpers'
+            'A' => '_flashes',
+            'B' => 'flashes',
+            'C' => '_flash_bag',
+            'D' => 'flash_bag',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/session.rst',
     ],
     [
-        'text' => 'Which capabilities belong to the HTML Sanitizer? (multiple correct)',
+        'text' => "Event Dispatcher: how do you declare a listener in YAML for kernel.request with method onKernelRequest?",
         'answers' => [
-            'A' => 'Define allowed tags and attributes',
-            'B' => 'Custom policies for different contexts',
-            'C' => 'Automatically execute inline scripts',
-            'D' => 'Strip dangerous attributes like on* handlers'
+            'A' => "tags: [{ name: 'kernel.event_listener', event: 'kernel.request', method: 'onKernelRequest' }]",
+            'B' => "tags: [{ name: 'event.listener', event: 'kernel.request', call: 'onKernelRequest' }]",
+            'C' => "listener: kernel.request@onKernelRequest",
+            'D' => "subscribe: kernel.request:onKernelRequest",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/event_dispatcher.rst',
     ],
-
-    // Object Mapper
     [
-        'text' => 'What problem does the Object Mapper solve in Symfony?',
+        'text' => "Serializer: how do you exclude a field from serialization using attributes?",
         'answers' => [
-            'A' => 'Map arrays or request data to PHP DTOs/objects with type conversion',
-            'B' => 'Persist objects to the filesystem',
-            'C' => 'Create database indices automatically',
-            'D' => 'Render forms from objects without a form type'
+            'A' => "#[Ignore]",
+            'B' => "#[NotSerialized]",
+            'C' => "#[Exclude]",
+            'D' => "#[SkipSerialization]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/serializer.rst',
     ],
     [
-        'text' => 'Object Mapper features typically include: (multiple correct)',
+        'text' => "Templates: how do you pass global variables to Twig via configuration?",
         'answers' => [
-            'A' => 'Nested mapping to sub-objects',
-            'B' => 'Type conversion and normalizers',
-            'C' => 'Automatic HTML escaping of values',
-            'D' => 'Integration with validation for mapped objects'
+            'A' => "twig: globals: foo: 'bar'",
+            'B' => "twig: variables: foo: 'bar'",
+            'C' => "twig: params: foo: 'bar'",
+            'D' => "twig: inject: foo: 'bar'",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // WebLink
     [
-        'text' => 'What does the WebLink component help set in responses?',
+        'text' => "Forms: which DataTransformer do you use to convert string <-> DateTimeImmutable?",
         'answers' => [
-            'A' => 'HTTP Link headers (e.g., preload, prefetch)',
-            'B' => 'Cookie SameSite policy',
-            'C' => 'CSRF token storage',
-            'D' => 'Database connection pooling'
+            'A' => 'CallbackTransformer',
+            'B' => 'DateTimeImmutableTransformer',
+            'C' => 'DateTimeToStringTransformer',
+            'D' => 'StringToDateTimeImmutableTransformer',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
     [
-        'text' => 'WebLink can be used to configure which link relations? (multiple correct)',
+        'text' => "Routing: how do you force HTTPS on a route?",
         'answers' => [
-            'A' => 'preload and prefetch',
-            'B' => 'canonical and alternate',
-            'C' => 'Automatic sitemap generation',
-            'D' => 'dns-prefetch'
+            'A' => "schemes: ['https']",
+            'B' => "requirements: { scheme: 'https' }",
+            'C' => "secure: true",
+            'D' => "https_only: true",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
-
-    // Webhook
     [
-        'text' => 'What is a primary concern when implementing webhooks in a Symfony app?',
+        'text' => "Routing: how do you inject default values with localization (i18n) using attributes?",
         'answers' => [
-            'A' => 'Verifying the signature of incoming webhook requests',
-            'B' => 'Storing webhooks in session storage',
-            'C' => 'Rendering webhooks in Twig templates',
-            'D' => 'Serving webhooks only over FTP'
+            'A' => "#[Route(path: '/{_locale}/blog', name: 'blog', defaults: ['_locale' => 'en'], requirements: ['_locale' => 'en|fr'])]",
+            'B' => "#[Route('/blog', locale: 'en|fr')]",
+            'C' => "#[Route('/{locale}/blog', defaults: { locale: 'en' }, regex: { locale: 'en|fr' })]",
+            'D' => "#[Route('/blog', i18n: true)]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/routing.rst',
     ],
     [
-        'text' => 'Which practices are important for webhook handling? (multiple correct)',
+        'text' => "Security: which method in a controller checks an authorization and throws 403 if denied?",
         'answers' => [
-            'A' => 'Verify request authenticity (signatures)',
-            'B' => 'Respond quickly and enqueue processing for async work',
-            'C' => 'Store webhook payloads in global variables',
-            'D' => 'Implement retries and idempotency'
+            'A' => '$this->denyUnlessGranted(\'EDIT\', $object)',
+            'B' => '$this->denyAccessUnlessGranted(\'EDIT\', $object)',
+            'C' => '$this->isGrantedOr403(\'EDIT\', $object)',
+            'D' => '$this->ensureGranted(\'EDIT\', $object)',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
-
-    // Workflow
     [
-        'text' => 'What is the Workflow component mainly used for?',
+        'text' => "Console: which event is dispatched before a command is executed?",
         'answers' => [
-            'A' => 'Model state machines or workflows for business objects',
-            'B' => 'Define database schemas',
-            'C' => 'Handle HTTP routing',
-            'D' => 'Perform asset compilation'
+            'A' => 'ConsoleEvents::START',
+            'B' => 'ConsoleEvents::INIT',
+            'C' => 'ConsoleEvents::COMMAND',
+            'D' => 'ConsoleEvents::PRE_RUN',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
     [
-        'text' => 'Workflow features include: (multiple correct)',
+        'text' => "HTTP Cache: which header tells proxies which headers to vary the cache on?",
         'answers' => [
-            'A' => 'Places (states) and transitions',
-            'B' => 'Guards and conditions on transitions',
-            'C' => 'Automatic migration of place names',
-            'D' => 'Support for marking places and transitions history'
+            'A' => 'Vary',
+            'B' => 'Age',
+            'C' => 'Warning',
+            'D' => 'Via',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
-    // 1 - Kernel: boot and lifecycle
     [
-        'text' => 'Which Kernel method triggers service container compilation and bundle boot?',
+        'text' => "Templating: how do you debug the contents of a variable in Twig?",
         'answers' => [
-            'A' => 'boot()',
-            'B' => 'handle()',
-            'C' => 'registerBundles()',
-            'D' => 'initialize()'
+            'A' => "{{ dump(var) }}",
+            'B' => "{{ dd(var) }}",
+            'C' => "{% dump var %}",
+            'D' => "{{ debug(var) }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Which actions are part of the Kernel boot sequence? (multiple correct)',
+        'text' => "Forms: how do you extend an existing form type globally?",
         'answers' => [
-            'A' => 'Register bundles',
-            'B' => 'Compile the service container',
-            'C' => 'Send the HTTP response to the client',
-            'D' => 'Load environment variables and configs'
+            'A' => 'By creating a FormTypeExtension and tagging it with form.type_extension',
+            'B' => 'By overriding the form.factory service',
+            'C' => 'By extending the type class and registering it as an alias',
+            'D' => 'By adding options in config/forms.yaml',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
-
-    // 2 - Service container: decoration, synthetic, factory
     [
-        'text' => 'What does service decoration let you do in Symfony?',
+        'text' => "Validation: how do you define a callback validator at the class level with attributes?",
         'answers' => [
-            'A' => 'Wrap or replace an existing service implementation',
-            'B' => 'Mark a service as deprecated',
-            'C' => 'Automatically autowire arguments',
-            'D' => 'Persist services across requests'
+            'A' => "#[Assert\\Callback('validate')]",
+            'B' => "#[Assert\\Callback(callback: 'validate')]",
+            'C' => "#[Assert\\Validate('validate')]",
+            'D' => "#[Callback('validate')]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
     [
-        'text' => 'Which statements about service definitions are valid? (multiple correct)',
+        'text' => "DI: how do you define a ServiceLocator for lazy injection of heterogeneous services?",
         'answers' => [
-            'A' => 'A service can be defined with a factory callable',
-            'B' => '`synthetic` services are created externally and not by the container',
-            'C' => 'Decorating a service removes the original service from the container',
-            'D' => 'You can mark services as `lazy` to defer instantiation'
+            'A' => "@service_locator { foo: '@App\\Foo', bar: '@App\\Bar' }",
+            'B' => "arguments: [!service_locator { foo: '@App\\Foo', bar: '@App\\Bar' }]",
+            'C' => "arguments: [ServiceLocator(['@App\\Foo','@App\\Bar'])]",
+            'D' => "use: service_locator: ['@App\\Foo','@App\\Bar']",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
-
-    // 3 - Compiler passes and tags
     [
-        'text' => 'When are compiler passes executed?',
+        'text' => "Security: how do you define an in-memory user provider with two users?",
         'answers' => [
-            'A' => 'During container compilation (build phase)',
-            'B' => 'At runtime on every request',
-            'C' => 'Only in test environment',
-            'D' => 'After the HTTP response is sent'
+            'A' => "providers: in_memory: memory: users: { user: { password: 'p', roles: ['ROLE_USER'] }, admin: { password: 'p', roles: ['ROLE_ADMIN'] } }",
+            'B' => "providers: in_memory: users: ...",
+            'C' => "providers: memory: in_memory: ...",
+            'D' => "providers: { in_memory: { users: {...} } }",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,D',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
     [
-        'text' => 'Compiler passes are typically used to: (multiple correct)',
+        'text' => "Twig: which filter merges arrays, avoiding duplicates?",
         'answers' => [
-            'A' => 'Collect services by tag and modify definitions',
-            'B' => 'Change service visibility and add method calls',
-            'C' => 'Execute long-running background jobs',
-            'D' => 'Register new routes dynamically'
+            'A' => 'merge',
+            'B' => 'unique',
+            'C' => 'join',
+            'D' => 'combine',
         ],
-        'correctAnswers' => 'A,B'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // 4 - Autowiring / Binding specifics
     [
-        'text' => 'What can you use to provide a specific scalar value when autowiring a service?',
+        'text' => "Twig: how do you perform manual escaping in a specific context (e.g., html_attr)?",
         'answers' => [
-            'A' => 'Bindings (service container bindings)',
-            'B' => 'Route requirements',
-            'C' => 'Twig globals',
-            'D' => 'Event listeners'
+            'A' => "{{ value|e('html_attr') }}",
+            'B' => "{{ escape(value, 'attr') }}",
+            'C' => "{{ value|escape_attr }}",
+            'D' => "{{ value|raw('attr') }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Autowiring behavior can be influenced by: (multiple correct)',
+        'text' => "Forms: how do you make a field not mapped to the data object?",
         'answers' => [
-            'A' => 'Type hints and parameter names',
-            'B' => 'Explicit service `bind` configuration',
-            'C' => 'Route path variables',
-            'D' => 'Autoconfigure and service tags'
+            'A' => "mapped: false",
+            'B' => "standalone: true",
+            'C' => "unbind: true",
+            'D' => "detached: false",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
-
-    // 5 - Routing: requirements, host, condition
     [
-        'text' => 'Which routing option lets you restrict a placeholder with a regex?',
+        'text' => "Validation: how do you apply a constraint to each element of an array property?",
         'answers' => [
-            'A' => 'requirements',
-            'B' => 'methods',
-            'C' => 'schemes',
-            'D' => 'defaults'
+            'A' => "#[Assert\\All(new Assert\\Email())]",
+            'B' => "#[Assert\\Each(new Assert\\Email())]",
+            'C' => "#[Assert\\CollectionOf(new Assert\\Email())]",
+            'D' => "#[Assert\\Every(new Assert\\Email())]",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
     [
-        'text' => 'Which routing features can be used to refine matching? (multiple correct)',
+        'text' => "DI: how do you force autowiring for scalar types with parameter binding in services.yaml?",
         'answers' => [
-            'A' => 'requirements (regex) for placeholders',
-            'B' => 'host and scheme constraints',
-            'C' => 'route `condition` expressions using the `request` variable',
-            'D' => 'Automatic database lookups for parameters'
+            'A' => "bind: string \$env: '%env(APP_ENV)%'",
+            'B' => "bind: '\$projectDir': '%kernel.project_dir%'",
+            'C' => "bind: '\$dsn': '%env(resolve:MESSENGER_TRANSPORT_DSN)%'",
+            'D' => "bind: 'dsn': '%env(DSN)%'",
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'B,C',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
-
-    // 6 - Controllers: argument resolvers and invokables
     [
-        'text' => 'Which built-in argument is automatically injected into controller actions?',
+        'text' => "Security: how do you configure a firewall that requires form login with a custom check route?",
         'answers' => [
-            'A' => 'Request',
-            'B' => 'EntityManager without type hint',
-            'C' => 'Route name string by default',
-            'D' => 'Twig environment if not type-hinted'
+            'A' => "form_login: check_path: app_login",
+            'B' => "form_login: login_check: app_login",
+            'C' => "form_auth: check_route: app_login",
+            'D' => "form_login: firewall_check: app_login",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
     [
-        'text' => 'Controller argument resolution can provide: (multiple correct)',
+        'text' => "HTTP Cache: how do you set Last-Modified on a Response?",
         'answers' => [
-            'A' => 'Request and Response objects',
-            'B' => 'Entity objects via ParamConverter (when configured)',
-            'C' => 'Automatic conversion of scalar route params into services',
-            'D' => 'UploadedFile instances for file form fields'
+            'A' => '$response->headers->set(\'Last-Modified\', \'...\')',
+            'B' => '$response->setLastModified(new \DateTimeImmutable())',
+            'C' => '$response->lastModified(new \DateTimeImmutable())',
+            'D' => '$response->withLastModified(new \DateTimeImmutable())',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
-
-    // 7 - ParamConverter and Sensio/annotations behavior
     [
-        'text' => 'What does the ParamConverter do in Symfony controllers?',
+        'text' => "Console: how do you define an array (repeatable) argument?",
         'answers' => [
-            'A' => 'Convert request attributes to objects (e.g., Doctrine entities)',
-            'B' => 'Convert form data to JSON',
-            'C' => 'Transform services into scalar values',
-            'D' => 'Generate route requirements automatically'
+            'A' => "addArgument('names', InputArgument::IS_ARRAY)",
+            'B' => "addArgument('names', InputArgument::ARRAY)",
+            'C' => "addArgument('names', InputOption::IS_ARRAY)",
+            'D' => "addArgument('names', InputArgument::REPEATABLE)",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
     [
-        'text' => 'ParamConverter usage can include: (multiple correct)',
+        'text' => "Testing: how do you assert that a page contains a link with text 'Home'?",
         'answers' => [
-            'A' => 'Automatic entity lookup by id route parameter',
-            'B' => 'Custom converters for DTOs',
-            'C' => 'Automatic validation of converted objects',
-            'D' => 'Injection of environment variables'
+            'A' => '$crawler->selectLink(\'Home\')->count() > 0',
+            'B' => '$crawler->filter(\'a:contains(\\\'Home\\\')\')->count() > 0',
+            'C' => '$this->assertSelectorTextContains(\'a\', \'Home\')',
+            'D' => '$this->assertPageHasLink(\'Home\')',
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
-
-    // 8 - HTTP caching: headers, ESI, surrogate keys
     [
-        'text' => 'Which response header directly controls shared proxy cache lifetime?',
+        'text' => "Mailer: how do you send an email with an attachment?",
         'answers' => [
-            'A' => 'Cache-Control: s-maxage',
-            'B' => 'Expires only for browser caches',
-            'C' => 'Set-Cookie',
-            'D' => 'Content-Security-Policy'
+            'A' => '$email->attachFromPath(\'/path/file.pdf\'); $mailer->send($email)',
+            'B' => '$email->addAttachment(\'/path/file.pdf\'); $mailer->send($email)',
+            'C' => '$mailer->attach(\'/path/file.pdf\')->send($email)',
+            'D' => '$email->withAttachment(\'/path/file.pdf\'); $mailer->send($email)',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/mailer.rst',
     ],
     [
-        'text' => 'Which mechanisms are used for advanced HTTP caching in Symfony? (multiple correct)',
+        'text' => "Messenger: how do you consume messages from a defined transport?",
         'answers' => [
-            'A' => 'Edge Side Includes (ESI) for fragment caching',
-            'B' => 'Tag-aware invalidation via cache tags',
-            'C' => 'Using Doctrine query cache to populate HTTP caches',
-            'D' => 'Correct Vary header handling for content negotiation'
+            'A' => 'bin/console messenger:consume',
+            'B' => 'bin/console messenger:consume async',
+            'C' => 'bin/console messenger:run async',
+            'D' => 'bin/console consume:messenger async',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/messenger.rst',
     ],
-
-    // 9 - Forms: events and data mappers
     [
-        'text' => 'Which form event is typically used to modify form fields based on submitted data before binding?',
+        'text' => "Profiler: how do you get the current profile in a test after enableProfiler()?",
         'answers' => [
-            'A' => 'PRE_SUBMIT',
-            'B' => 'POST_SUBMIT',
-            'C' => 'PRE_SET_DATA',
-            'D' => 'SUBMIT'
+            'A' => '$profile = $client->getProfile()',
+            'B' => '$profile = $client->getProfiler()',
+            'C' => '$profile = $client->profile()',
+            'D' => '$profile = $client->profiler()',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/profiler.rst',
     ],
     [
-        'text' => 'Form customization can include: (multiple correct)',
+        'text' => "Twig: how do you include assets managed by Webpack Encore?",
         'answers' => [
-            'A' => 'Using PRE_SET_DATA to change fields for initial data',
-            'B' => 'Listening to PRE_SUBMIT to adapt to incoming payload',
-            'C' => 'Replacing the data mapper to customize binding',
-            'D' => 'Using form events to bypass CSRF protection entirely'
+            'A' => "{{ asset('build/app.js') }}",
+            'B' => "{{ encore_entry_script_tags('app') }}",
+            'C' => "{{ encore_entry_link_tags('app') }}",
+            'D' => "{{ webpack_asset('app') }}",
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'B,C',
+        'linkAtDocumentation' => 'sf-doc/frontend.rst',
     ],
-
-    // 10 - Validation: groups and payloads
     [
-        'text' => 'What are validation groups used for?',
+        'text' => "Routing: how do you generate an absolute URL in Twig for a route with parameter id=5?",
         'answers' => [
-            'A' => 'Apply different sets of constraints conditionally',
-            'B' => 'Group constraints to run in parallel threads',
-            'C' => 'Persist validation results in the database',
-            'D' => 'Translate constraint messages automatically'
+            'A' => "{{ url('route_name', {id: 5}) }}",
+            'B' => "{{ path('route_name', {id: 5}) }}",
+            'C' => "{{ absolute_url(path('route_name', {id: 5})) }}",
+            'D' => "{{ absolute_path('route_name', {id: 5}) }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Validation features include: (multiple correct)',
+        'text' => "Validation: how do you translate constraint messages?",
         'answers' => [
-            'A' => 'Constraint groups to select which constraints run',
-            'B' => 'Custom constraint validators',
-            'C' => 'Automatic database uniqueness enforcement without a constraint',
-            'D' => 'Payloads for transmitting extra info to validators'
+            'A' => 'file translations/validators.<locale>.yaml',
+            'B' => 'file translations/messages.<locale>.yaml with validators domain',
+            'C' => 'file translations/validation.<locale>.yaml',
+            'D' => 'In the constraint with directly translated message',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
-
-    // 11 - Security: authenticator system and throttling
     [
-        'text' => 'In the new Symfony security system an authenticator class typically implements which responsibility?',
+        'text' => "Forms: how do you add a data-* attribute to a field in Twig?",
         'answers' => [
-            'A' => 'Create a Passport and convert credentials into an authenticated token',
-            'B' => 'Store user sessions in Redis by default',
-            'C' => 'Automatically hash passwords in the database',
-            'D' => 'Generate CSRF tokens for forms'
+            'A' => "{{ form_widget(form.field, { attr: { 'data-foo': 'bar' } }) }}",
+            'B' => "{{ form_row(form.field, { data: { foo: 'bar' } }) }}",
+            'C' => "{{ form_attr(form.field, { 'data-foo': 'bar' }) }}",
+            'D' => "{{ form_widget_attr(form.field, { 'data-foo': 'bar' }) }}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Security features and protections include: (multiple correct)',
+        'text' => "DI: how do you mark a service as public (an exception) in services.yaml?",
         'answers' => [
-            'A' => 'Login throttling to prevent brute-force',
-            'B' => 'Remember-me persistent tokens',
-            'C' => 'Automatic migration of user passwords to new encoders during login',
-            'D' => 'Treating all credentials as public services'
+            'A' => 'visibility: public',
+            'B' => 'public: true',
+            'C' => 'shared: true',
+            'D' => 'expose: true',
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
-
-    // 12 - Password hashing: encoders vs hashers
     [
-        'text' => 'Which API should new Symfony apps use for password hashing?',
+        'text' => "Security: which badges might you add to a Passport?",
         'answers' => [
-            'A' => 'PasswordHasher (newer API)',
-            'B' => 'PasswordEncoder (legacy API)',
-            'C' => 'crypt() directly in controllers',
-            'D' => 'Storing plain text is acceptable if HTTPS is used'
+            'A' => 'CsrfTokenBadge',
+            'B' => 'RememberMeBadge',
+            'C' => 'PasswordUpgradeBadge',
+            'D' => 'LoginRateLimitBadge',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B,D',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
     [
-        'text' => 'Password hashing considerations include: (multiple correct)',
+        'text' => "HTTP Cache: how do you set an ETag on a Response?",
         'answers' => [
-            'A' => 'Use adaptive algorithms (bcrypt/argon2) via the hasher API',
-            'B' => 'Rehash passwords when algorithm cost changes',
-            'C' => 'Store raw salts in the repository without hashing',
-            'D' => 'Avoid using legacy encoders for new applications'
+            'A' => '$response->setEtag(\'abc\')',
+            'B' => '$response->setETag(\'abc\')',
+            'C' => '$response->headers->set(\'ETag\',\'abc\')',
+            'D' => '$response->etag(\'abc\')',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
-
-    // 13 - Doctrine: owning/inverse side and orphanRemoval
     [
-        'text' => 'Which side of a Doctrine relation stores the foreign key in the database?',
+        'text' => "Console: how do you access the value of a boolean --force option in execute()?",
         'answers' => [
-            'A' => 'Owning side',
-            'B' => 'Inverse side',
-            'C' => 'Neither; Doctrine uses a join table always',
-            'D' => 'The service container manages foreign keys'
+            'A' => '$input->getOption(\'force\')',
+            'B' => '$input->hasOption(\'force\')',
+            'C' => '$input->getBoolean(\'force\')',
+            'D' => '$io->option(\'force\')',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
     [
-        'text' => 'Which Doctrine mapping behaviors are valid? (multiple correct)',
+        'text' => "Testing: how do you assert the status code of a Response in the client?",
         'answers' => [
-            'A' => '`cascade={"persist","remove"}` propagates operations',
-            'B' => '`orphanRemoval=true` removes detached children on flush',
-            'C' => 'Lazy=false forces eager fetching for relations',
-            'D' => 'Automatic schema updates happen on every flush'
+            'A' => '$this->assertSame(200, $client->getResponse()->getStatusCode())',
+            'B' => '$this->assertResponseIsSuccessful()',
+            'C' => '$this->assertStatusCode(200)',
+            'D' => '$this->assertResponseStatusCodeSame(200)',
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'A,B,D',
+        'linkAtDocumentation' => 'sf-doc/testing.rst',
     ],
-
-    // 14 - Messenger: transports, stamps and retry
     [
-        'text' => 'Which component concept attaches metadata to a message for transport handling?',
+        'text' => "Twig: how do you iterate over an array with index?",
         'answers' => [
-            'A' => 'Stamp',
-            'B' => 'EnvelopeFactory',
-            'C' => 'MiddlewareChain',
-            'D' => 'HandlerLocator'
+            'A' => "{% for i, item in items %}",
+            'B' => "{% for loop.index, item in items %}",
+            'C' => "{% for item in items with index %}",
+            'D' => "{% for key, item in items %}",
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'D',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
     [
-        'text' => 'Messenger features include: (multiple correct)',
+        'text' => "Twig: which filter converts an array to JSON?",
         'answers' => [
-            'A' => 'Configurable transports (AMQP, Redis, doctrine)',
-            'B' => 'Stamps to control behavior (delay, priority)',
-            'C' => 'Automatic SQL schema generation for messages only',
-            'D' => 'Retry and failure transport configuration'
+            'A' => 'json',
+            'B' => 'json_encode',
+            'C' => 'to_json',
+            'D' => 'encode',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // 15 - HttpClient: options and exceptions
     [
-        'text' => 'Which HttpClient option controls maximum time you wait for the entire request?',
+        'text' => "Forms: how do you add a field in the builder that depends on the value of another (dynamic)?",
         'answers' => [
-            'A' => 'timeout',
-            'B' => 'verify_peer',
-            'C' => 'base_uri',
-            'D' => 'http_version'
+            'A' => 'Using FormEvents::PRE_SET_DATA or PRE_SUBMIT for add()',
+            'B' => 'Using $form->addDynamic()',
+            'C' => 'Using OptionResolver::depend()',
+            'D' => 'It is not possible',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst',
     ],
     [
-        'text' => 'HttpClient features and options include: (multiple correct)',
+        'text' => "Validation: how do you ensure that an association property is validated recursively?",
         'answers' => [
-            'A' => 'timeout and max_redirects options',
-            'B' => 'Concurrent requests via the multi interface',
-            'C' => 'Automatic conversion of JSON into Doctrine entities',
-            'D' => 'Streaming responses and progress callbacks'
+            'A' => 'Using #[Assert\\Valid]',
+            'B' => 'Using #[Assert\\Cascade]',
+            'C' => 'It is automatic always',
+            'D' => 'Using #[Assert\\Nested] ',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst',
     ],
-
-    // 16 - Serializer: circular refs and groups
     [
-        'text' => 'Which serializer feature helps avoid infinite loops on circular relations?',
+        'text' => "DI: how do you define a service with autowiring disabled?",
         'answers' => [
-            'A' => 'Circular reference handler',
-            'B' => 'Using JSON_PRETTY_PRINT only',
-            'C' => 'Turning off normalization entirely',
-            'D' => 'Using raw var_export on objects'
+            'A' => 'autowire: false',
+            'B' => 'autowiring: off',
+            'C' => 'wire: false',
+            'D' => 'inject: false',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst',
     ],
     [
-        'text' => 'Serializer customization can include: (multiple correct)',
+        'text' => "Security: which method in UserPasswordHasherInterface verifies a plain password against a user?",
         'answers' => [
-            'A' => 'Groups to include/exclude properties',
-            'B' => 'Custom normalizers and encoders',
-            'C' => 'Automatic relation hydration into entities',
-            'D' => 'Circular reference handlers to return identifiers'
+            'A' => 'isPasswordValid($user, $plainPassword)',
+            'B' => 'verify($user, $plainPassword)',
+            'C' => 'check($user, $plainPassword)',
+            'D' => 'validate($user, $plainPassword)',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst',
     ],
-    // 1 - HttpFoundation: Request API
     [
-        'text' => 'Which method on Symfony\\Component\\HttpFoundation\\Request returns the HTTP method used (GET/POST/etc.)?',
+        'text' => "HTTP Cache: how do you disable caching for a specific Response?",
         'answers' => [
-            'A' => 'getMethod()',
-            'B' => 'method()',
-            'C' => 'getHttpMethod()',
-            'D' => 'fetchMethod()'
+            'A' => '$response->setPrivate()',
+            'B' => '$response->headers->addCacheControlDirective(\'no-cache\', true)',
+            'C' => '$response->setMaxAge(0); $response->setPrivate()',
+            'D' => '$response->headers->set(\'Cache-Control\',\'no-store, no-cache, must-revalidate\')',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'D',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst',
     ],
     [
-        'text' => 'Which Request API features are available? (multiple correct)',
+        'text' => "Console: how do you set detailed help on a command?",
         'answers' => [
-            'A' => 'getMethod() and getPathInfo()',
-            'B' => 'headers->get() for header access',
-            'C' => 'Automatic DB hydration from request body',
-            'D' => 'query->get() and request->get() for GET/POST params'
+            'A' => '$this->setHelp(\'...\')',
+            'B' => "#[AsCommand(help: '...') ]",
+            'C' => '$io->help(\'...\')',
+            'D' => 'PHPDoc comment on the class',
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/console.rst',
     ],
-
-    // 2 - HttpFoundation: Response API
     [
-        'text' => 'Which method sets the HTTP status code on a Symfony Response?',
+        'text' => "Testing: how do you access the profiler for the DB collector in a test?",
         'answers' => [
-            'A' => 'setStatusCode()',
-            'B' => 'status()',
-            'C' => 'withStatus()',
-            'D' => 'setCode()'
+            'A' => '$profile = $client->getProfile(); $collector = $profile->getCollector(\'db\')',
+            'B' => '$collector = $client->getCollector(\'db\')',
+            'C' => '$collector = $profiler->db()',
+            'D' => '$collector = $this->getCollector(\'db\')',
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/profiler.rst',
     ],
     [
-        'text' => 'Response API capabilities include: (multiple correct)',
+        'text' => "Twig: how do you set template inheritance from base.html.twig?",
         'answers' => [
-            'A' => 'setStatusCode() to change status',
-            'B' => 'headers->set() to add headers',
-            'C' => 'auto-serialization of entities to JSON by default',
-            'D' => 'send() to send the response to the client'
+            'A' => "{% use 'base.html.twig' %}",
+            'B' => "{% import 'base.html.twig' %}",
+            'C' => "{% extends 'base.html.twig' %}",
+            'D' => "{{ parent('base.html.twig') }}",
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst',
     ],
-
-    // 3 - HttpClient: HttpClientInterface & Responses
     [
-        'text' => 'Which method belongs to Symfony\\Contracts\\HttpClient\\HttpClientInterface to perform a request?',
+        'text' => 'Twig: how do you display a value with a default if null/empty?',
         'answers' => [
-            'A' => 'request()',
-            'B' => 'call()',
-            'C' => 'fetch()',
-            'D' => 'sendRequest()'
+            'A' => '{{ value|default(\'n/a\') }}',
+            'B' => '{{ value ?? \'n/a\' }}',
+            'C' => '{{ value ?: \'n/a\' }}',
+            'D' => '{{ value|fallback(\'n/a\') }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'HttpClient related API includes: (multiple correct)',
+        'text' => 'Forms: how do you set a placeholder on a TextType field?',
         'answers' => [
-            'A' => 'request() returns a ResponseInterface-like object',
-            'B' => 'stream() to iterate streaming responses',
-            'C' => 'Automatic conversion of responses into Doctrine entities',
-            'D' => 'getStatusCode() and getContent() on responses'
+            'A' => 'attr: { placeholder: \'...\' }',
+            'B' => 'placeholder: \'...\'',
+            'C' => 'html_attr: { placeholder: \'...\' }',
+            'D' => 'widget_attr: { placeholder: \'...\' }'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
-
-    // 4 - EventDispatcher: EventDispatcherInterface
     [
-        'text' => 'What is the main method of Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface?',
+        'text' => 'Validation: what is a GroupSequenceProvider?',
         'answers' => [
-            'A' => 'dispatch(object $event, string $eventName = null)',
-            'B' => 'trigger(string $name)',
-            'C' => 'emit(Event $e)',
-            'D' => 'publish(array $events)'
+            'A' => 'A translation provider for groups',
+            'B' => 'An object that dynamically determines the validation order of groups',
+            'C' => 'A service that merges groups at runtime',
+            'D' => 'A deprecated feature'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'EventDispatcher API supports: (multiple correct)',
+        'text' => 'DI: how do you define a service alias?',
         'answers' => [
-            'A' => 'Dispatching events with dispatch()',
-            'B' => 'Listener priorities',
-            'C' => 'Automatic persistence of events to DB',
-            'D' => 'Event subscribers implementing static subscription lists'
+            'A' => 'App\\Service\\Foo: \'@App\\Service\\Bar\'',
+            'B' => 'App\\Service\\Foo: alias: \'App\\Service\\Bar\'',
+            'C' => 'App\\Service\\Bar: \'@App\\Service\\Foo\'',
+            'D' => 'aliases: { \'App\\Service\\Foo\': \'@App\\Service\\Bar\' }'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
-
-    // 5 - Serializer: SerializerInterface / NormalizerInterface
     [
-        'text' => 'Which method on Symfony\\Component\\Serializer\\SerializerInterface converts an object to a string format?',
+        'text' => 'Security: which voter interface do you implement for a custom voter?',
         'answers' => [
-            'A' => 'serialize($data, string $format, array $context = [])',
-            'B' => 'toString($data)',
-            'C' => 'encode($data)',
-            'D' => 'dump($data)'
+            'A' => 'VoterInterface',
+            'B' => 'Symfony\\Component\\Security\\Core\\Authorization\\Voter\\Voter',
+            'C' => 'AuthorizationVoterInterface',
+            'D' => 'SecurityVoter'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Serializer public API includes: (multiple correct)',
+        'text' => 'HTTP Cache: what is the difference between max-age and s-maxage?',
         'answers' => [
-            'A' => 'serialize() and deserialize()',
-            'B' => 'NormalizerInterface supports supportsNormalization() and normalize()',
-            'C' => 'Automatic DB hydration into entities without configuration',
-            'D' => 'Encoders and Decoders for format handling'
+            'A' => 'max-age for client, s-maxage for shared caches',
+            'B' => 's-maxage for client, max-age for proxy',
+            'C' => 'They are equivalent',
+            'D' => 's-maxage is deprecated'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // 6 - Form: FormFactoryInterface and FormInterface
     [
-        'text' => 'Which method on Symfony\\Component\\Form\\FormFactoryInterface creates a new form?',
+        'text' => 'Console: how do you handle non-interactive input for confirmations?',
         'answers' => [
-            'A' => 'create()',
-            'B' => 'make()',
-            'C' => 'build()',
-            'D' => 'newForm()'
+            'A' => 'Using QuestionHelper::ask with ConfirmationQuestion',
+            'B' => 'Passing --no-interaction',
+            'C' => 'Using $io->confirm()',
+            'D' => 'It\'s not possible'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B,C',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'FormInterface public methods include: (multiple correct)',
+        'text' => 'Testing: how do you log in a user in the test client without a form?',
         'answers' => [
-            'A' => 'handleRequest(Request $request)',
-            'B' => 'isSubmitted() and isValid()',
-            'C' => 'persist() to save form data automatically',
-            'D' => 'getData() and setData()'
+            'A' => '$client->loginUser($user)',
+            'B' => '$client->authenticate($user)',
+            'C' => '$client->setUser($user)',
+            'D' => '$client->impersonate($user)'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // 7 - Validator: ValidatorInterface
     [
-        'text' => 'Which method validates an object or value in Symfony\\Component\\Validator\\Validator\\ValidatorInterface?',
+        'text' => 'Twig: how do you conditionally include a template only if it exists?',
         'answers' => [
-            'A' => 'validate($value, $constraints = null, $groups = null)',
-            'B' => 'check($value)',
-            'C' => 'assert($value)',
-            'D' => 'verify($value)'
+            'A' => '{{ include(\'partial.html.twig\', ignore_missing = true) }}',
+            'B' => '{{ include(\'partial.html.twig\') ?? \'\' }}',
+            'C' => '{% if template_exists(\'partial.html.twig\') %}{{ include(\'partial.html.twig\') }}{% endif %}',
+            'D' => '{{ render_if_exists(\'partial.html.twig\') }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'Validator API capabilities include: (multiple correct)',
+        'text' => 'Forms: how do you customize the form_row block of a specific type via a theme?',
         'answers' => [
-            'A' => 'validate() and validateProperty()',
-            'B' => 'Constraint classes and custom ConstraintValidator implementations',
-            'C' => 'Automatic DB-level constraint enforcement',
-            'D' => 'Groups to control which constraints run'
+            'A' => 'Redefining the _<form>_<field>_row block',
+            'B' => 'Redefining the <type>_row block (e.g. text_row)',
+            'C' => 'Redefining the global form_row block',
+            'D' => 'It is not supported'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B,C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
-
-    // 8 - Security: UserInterface & TokenStorageInterface
     [
-        'text' => 'Which method is required by Symfony\\Component\\Security\\Core\\User\\UserInterface?',
+        'text' => 'Validation: how do you limit the groups applied through Valid?',
         'answers' => [
-            'A' => 'getRoles()',
-            'B' => 'getEmail()',
-            'C' => 'getProfile()',
-            'D' => 'getSession()'
+            'A' => '#[Assert\\Valid(groups: [\'registration\'])]',
+            'B' => '#[Assert\\Valid(groupSequence: [\'registration\'])]',
+            'C' => '#[Assert\\Cascade(groups: [\'registration\'])]',
+            'D' => '#[Assert\\Valid(only: [\'registration\'])]'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'Security public API pieces include: (multiple correct)',
+        'text' => 'DI: what does autoconfigure: true do?',
         'answers' => [
-            'A' => 'UserInterface with getPassword() and getRoles()',
-            'B' => 'TokenStorageInterface::getToken() to access current token',
-            'C' => 'Automatic password hashing without configuration',
-            'D' => 'Authentication via Authenticators creating Passport objects'
+            'A' => 'Automatically makes services public',
+            'B' => 'Automatically adds known tags based on interfaces/attributes',
+            'C' => 'Enables cache for metadata',
+            'D' => 'Registers aliases for interfaces'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
-
-    // 9 - Password hashing: PasswordHasherInterface
     [
-        'text' => 'Which method on Symfony\\Component\\PasswordHasher\\PasswordHasherInterface returns a hashed password?',
+        'text' => 'Security: how do you implement a custom authenticator based on a login form?',
         'answers' => [
-            'A' => 'hash(string $plainPassword)',
-            'B' => 'encode(string $plain)',
-            'C' => 'makeHash($p)',
-            'D' => 'create()'
+            'A' => 'Extending AbstractLoginFormAuthenticator',
+            'B' => 'Implementing AuthenticatorInterface',
+            'C' => 'Extending AbstractAuthenticator and handling supports/authenticate/onAuthenticationSuccess/onAuthenticationFailure',
+            'D' => 'Using GuardAuthenticator'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Password hasher API includes: (multiple correct)',
+        'text' => 'HTTP Cache: how do you enable the built-in HttpCache reverse proxy?',
         'answers' => [
-            'A' => 'hash() to create a hash',
-            'B' => 'verify() or isPasswordValid() to check a password',
-            'C' => 'Storing raw salts exposed publicly',
-            'D' => 'Rehash recommendations via needsRehash()'
+            'A' => 'Using App\\Kernel as HttpCacheKernel',
+            'B' => 'Creating App\\HttpCacheKernel that extends HttpCache and a front controller for it',
+            'C' => 'Setting framework.http_cache.enabled: true',
+            'D' => 'Adding symfony/http-cache-bundle'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // 10 - Doctrine: EntityManagerInterface (public API)
     [
-        'text' => 'Which EntityManagerInterface method schedules an entity for insertion on flush?',
+        'text' => 'Console: how do you display a progress bar?',
         'answers' => [
-            'A' => 'persist($entity)',
-            'B' => 'save($entity)',
-            'C' => 'insert($entity)',
-            'D' => 'store($entity)'
+            'A' => '$progressBar = new ProgressBar($output); $progressBar->start(); ...',
+            'B' => '$io->progressStart(); ... $io->progressFinish();',
+            'C' => '$io->bar()->start()',
+            'D' => '$output->progress()'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'Common EntityManager public methods include: (multiple correct)',
+        'text' => 'Testing: how do you assert that a form has an error on the \'email\' field?',
         'answers' => [
-            'A' => 'persist(), remove(), flush()',
-            'B' => 'find() to load by id',
-            'C' => 'auto-mapping of request data to entities without config',
-            'D' => 'getRepository() to obtain repositories'
+            'A' => '$this->assertSelectorExists(\'#email.is-invalid\')',
+            'B' => '$this->assertTrue($form->get(\'email\')->getErrors(true)->count() > 0)',
+            'C' => '$this->assertFormHasError(\'email\')',
+            'D' => '$this->assertResponseContains(\'email: error\')'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // 11 - Messenger: MessageBusInterface & Envelope
     [
-        'text' => 'Which method sends a message to the bus on Symfony\\Component\\Messenger\\MessageBusInterface?',
+        'text' => 'Twig: which function builds an absolute asset URL from a relative path?',
         'answers' => [
-            'A' => 'dispatch($message)',
-            'B' => 'send($message)',
-            'C' => 'publish($message)',
-            'D' => 'enqueue($message)'
+            'A' => '{{ absolute_url(asset(\'image.png\')) }}',
+            'B' => '{{ asset_absolute(\'image.png\') }}',
+            'C' => '{{ url_asset(\'image.png\') }}',
+            'D' => '{{ path(\'image.png\', absolute=true) }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'Messenger public API items include: (multiple correct)',
+        'text' => 'Forms: how do you set help and help_attr on a field?',
         'answers' => [
-            'A' => 'dispatch() returns an Envelope',
-            'B' => 'Stamps attach metadata to Envelopes',
-            'C' => 'Automatic transactional guarantees without config',
-            'D' => 'Middleware to intercept messages'
+            'A' => 'help: \'Text\'; help_attr: { class: \'small\' }',
+            'B' => 'attr: { help: \'Text\', help_class: \'small\' }',
+            'C' => 'helptext: \'Text\'; helpclass: \'small\'',
+            'D' => 'widget_help: { text: \'Text\', attr: { class:\'small\' } }'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
-
-    // 12 - Mailer: MailerInterface and Email
     [
-        'text' => 'Which Mailer method sends an Email object in Symfony\\Component\\Mailer\\MailerInterface?',
+        'text' => 'Validation: how do you define a custom message for NotBlank?',
         'answers' => [
-            'A' => 'send(Email $email)',
-            'B' => 'deliver(Email $email)',
-            'C' => 'queue(Email $email)',
-            'D' => 'push(Email $email)'
+            'A' => '#[Assert\\NotBlank(message: \'This field is required\')]',
+            'B' => '#[Assert\\NotBlank(\'This field is required\')]',
+            'C' => '#[Assert\\NotBlank(msg: \'This field is required\')]',
+            'D' => '#[NotBlank(\'This field is required\')]'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'Mailer and Email API features include: (multiple correct)',
+        'text' => 'DI: how do you pass the value of an env parameter to a service argument?',
         'answers' => [
-            'A' => 'Email object with from, to, subject and text/html body',
-            'B' => 'Attachments via addPart or attach()',
-            'C' => 'Automatic locale translation of message bodies',
-            'D' => 'Different transports configured by DSN'
+            'A' => '\'%env(FOO)%\'',
+            'B' => 'env(FOO)',
+            'C' => '\'@env(FOO)\'',
+            'D' => '\'%env(resolve:FOO)%\''
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,D',
+        'linkAtDocumentation' => 'sf-doc/configuration.rst'
     ],
-
-    // 13 - Cache: CacheInterface & ItemInterface
     [
-        'text' => 'Which method on Psr\\Cache\\CacheItemInterface returns the cached value?',
+        'text' => 'Security: how do you limit routes by role directly in a route annotation/attribute?',
         'answers' => [
-            'A' => 'get()',
-            'B' => 'value()',
-            'C' => 'fetch()',
-            'D' => 'read()'
+            'A' => '#[IsGranted(\'ROLE_ADMIN\')] above the method',
+            'B' => '#[Route(..., roles: [\'ROLE_ADMIN\'])]',
+            'C' => 'condition: \'is_granted(\\\'ROLE_ADMIN\\\')\'',
+            'D' => '#[DenyAccess(\'ROLE_ADMIN\')]'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Cache public API aspects include: (multiple correct)',
+        'text' => 'HTTP Cache: how do you invalidate a response with ETag on the client side?',
         'answers' => [
-            'A' => 'get() and set() via CacheInterface',
-            'B' => 'has() to check existence (depending on implementation)',
-            'C' => 'Automatic HTTP cache invalidation without headers',
-            'D' => 'TTL and namespace support on items'
+            'A' => 'Setting a different ETag',
+            'B' => 'Responding 304 if If-None-Match matches',
+            'C' => 'Removing ETag',
+            'D' => 'Setting Age to 0'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // 14 - Logging: LoggerInterface (PSR-3)
     [
-        'text' => 'Which method on Psr\\Log\\LoggerInterface logs a message with a given level?',
+        'text' => 'Console: how do you return a non-zero exit code from execute()?',
         'answers' => [
-            'A' => 'log($level, $message, array $context = [])',
-            'B' => 'write($level, $message)',
-            'C' => 'record($level, $message)',
-            'D' => 'push($level, $message)'
+            'A' => 'return 1;',
+            'B' => 'throw new RuntimeException()',
+            'C' => 'exit(1);',
+            'D' => '$output->setExitCode(1)'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'PSR-3 / Logger public API includes: (multiple correct)',
+        'text' => 'Testing: how do you assert that a JSON response has a specific property?',
         'answers' => [
-            'A' => 'Specific level methods like info(), error(), debug()',
-            'B' => 'Context array for message interpolation',
-            'C' => 'Automatic DB commits on log calls',
-            'D' => 'log() as the generic entry point'
+            'A' => '$this->assertJsonContains([\'ok\' => true])',
+            'B' => '$this->assertResponseHasJsonPath(\'ok\')',
+            'C' => '$this->assertResponseFormatSame(\'json\')',
+            'D' => '$this->assertResponseJsonMatchesSchema()'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // 15 - Routing: RouterInterface (generate/match)
     [
-        'text' => 'Which RouterInterface method generates a URL for a named route?',
+        'text' => 'Twig: how do you include a partial with only the specified variables (no globals)?',
         'answers' => [
-            'A' => 'generate($name, $parameters = [], $referenceType = self::ABSOLUTE_PATH)',
-            'B' => 'urlFor($name)',
-            'C' => 'buildUrl($name)',
-            'D' => 'createUrl($name)'
+            'A' => '{{ include(\'partial.html.twig\', {a:1}, with_context = false) }}',
+            'B' => '{{ include(\'partial.html.twig\', {a:1}, only = true) }}',
+            'C' => '{% include \'partial.html.twig\' with {a:1} only %}',
+            'D' => '{{ include_only(\'partial.html.twig\', {a:1}) }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'Router public API capabilities include: (multiple correct)',
+        'text' => 'Forms: how do you create a custom type that adds a default option?',
         'answers' => [
-            'A' => 'generate() to build URLs',
-            'B' => 'match() to match a Request path to route data',
-            'C' => 'Automatic DB population of routes',
-            'D' => 'Support for route parameter defaults and requirements'
+            'A' => 'Implementing configureOptions(OptionsResolver $resolver)',
+            'B' => 'Implementing setDefaults(array $options)',
+            'C' => 'Redefining buildForm() and adding option',
+            'D' => 'Adding @DefaultOption on the attribute'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
-    // Console: Command API
     [
-        'text' => 'Which method should you override to configure name, description and options of a Symfony Console Command?',
+        'text' => 'Validation: how do you make a property valid only in a specific scenario (group)?',
         'answers' => [
-            'A' => 'configure()',
-            'B' => 'initialize()',
-            'C' => 'setup()',
-            'D' => 'boot()'
+            'A' => '#[Assert\\Length(min:3, groups:[\'registration\'])]',
+            'B' => '#[Assert\\Length(min:3, when:\'registration\')]',
+            'C' => '#[Assert\\Conditional(\'registration\', Length(min:3))]',
+            'D' => '#[Assert\\Group(\'registration\', Length(min:3))]'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'Which methods belong to the Command execution lifecycle? (multiple correct)',
+        'text' => 'DI: how do you change the factory method when using a factory service?',
         'answers' => [
-            'A' => 'configure() to set metadata',
-            'B' => 'execute(InputInterface $in, OutputInterface $out) to run the command',
-            'C' => 'interact() to ask interactive questions before execution',
-            'D' => 'render() to produce an HTTP response'
+            'A' => 'factory_method: \'make\'',
+            'B' => 'factory: [\'@factory\', \'make\']',
+            'C' => 'use: factory.method=make',
+            'D' => 'with: factory=\'@factory\', method=\'make\''
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
-
-    // Console: Input/Output interfaces
     [
-        'text' => 'Which InputInterface method retrieves a named argument passed to a command?',
+        'text' => 'Security: how do you perform impersonation (switch user) in an app?',
         'answers' => [
-            'A' => 'getArgument()',
-            'B' => 'argument()',
-            'C' => 'fetchArgument()',
-            'D' => 'readArgument()'
+            'A' => 'Enabling switch_user in the firewall and using _switch_user in the query',
+            'B' => 'Using $security->switchUser($username)',
+            'C' => 'Enabling masquerade: true in security.yaml',
+            'D' => 'Using impersonate() of the token storage'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Which OutputInterface methods are commonly used to print text? (multiple correct)',
+        'text' => 'HTTP Cache: how do you enable private cache for 120 seconds?',
         'answers' => [
-            'A' => 'write() for raw output',
-            'B' => 'writeln() to append a newline',
-            'C' => 'dump() for serializing objects to logs automatically',
-            'D' => 'begin() to open a block (not a real method)'
+            'A' => '$response->setMaxAge(120); $response->setPrivate();',
+            'B' => '$response->setSharedMaxAge(120);',
+            'C' => '$response->headers->set("Cache-Control","private, max-age=120")',
+            'D' => '$response->setTtl(120);'
         ],
-        'correctAnswers' => 'A,B'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // RequestStack and Request access
     [
-        'text' => 'Which RequestStack method returns the current HTTP Request?',
+        'text' => 'Console: how do you wrap typed input and output in execute() with SymfonyStyle?',
         'answers' => [
-            'A' => 'getCurrentRequest()',
-            'B' => 'current()',
-            'C' => 'fetchRequest()',
-            'D' => 'getRequestBag()'
+            'A' => '$io = new SymfonyStyle($input, $output)',
+            'B' => '$io = SymfonyStyle::create()',
+            'C' => '$io = $this->getIO()',
+            'D' => '$style = new Style($input, $output)'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'When using RequestStack you can: (multiple correct)',
+        'text' => 'Testing: how do you inspect the Location header after a redirect?',
         'answers' => [
-            'A' => 'Call getCurrentRequest() to obtain the active Request',
-            'B' => 'Push and pop requests when handling nested sub-requests',
-            'C' => 'Use it to persist session data to disk automatically',
-            'D' => 'Avoid type-hinting Request in services that need the current request'
+            'A' => '$client->getResponse()->headers->get(\'Location\')',
+            'B' => '$client->getRedirectUrl()',
+            'C' => '$client->response()->redirectUrl()',
+            'D' => '$crawler->getLocation()'
         ],
-        'correctAnswers' => 'A,B'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // SessionInterface
     [
-        'text' => 'Which SessionInterface method stores a value by key?',
+        'text' => 'Twig: how do you safely escape dynamically generated HTML attributes?',
         'answers' => [
-            'A' => 'set()',
-            'B' => 'put()',
-            'C' => 'save()',
-            'D' => 'persist()'
+            'A' => '{{ attribute|e(\'html_attr\') }}',
+            'B' => '{{ attribute|escapeAttr }}',
+            'C' => '{{ attr_escape(attribute) }}',
+            'D' => '{{ attribute|raw }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'Which SessionInterface methods are available? (multiple correct)',
+        'text' => 'Forms: which option sets an initial displayed value that is not mapped?',
         'answers' => [
-            'A' => 'get() to retrieve a value',
-            'B' => 'remove() to delete a key',
-            'C' => 'invalidate() to destroy the session and regenerate id',
-            'D' => 'flush() to write pending Doctrine entities'
+            'A' => 'empty_data',
+            'B' => 'data',
+            'C' => 'placeholder',
+            'D' => 'initial'
         ],
-        'correctAnswers' => 'A,B,C'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
-
-    // Security: AuthorizationCheckerInterface
     [
-        'text' => 'Which method checks if the current token has the given permission or role?',
+        'text' => 'Validation: how do you define a dynamic conditional group sequence?',
         'answers' => [
-            'A' => 'isGranted()',
-            'B' => 'checkPermission()',
-            'C' => 'authorize()',
-            'D' => 'hasRole()'
+            'A' => 'Implementing GroupSequenceProviderInterface',
+            'B' => 'Using #[Assert\\GroupSequenceDynamic]',
+            'C' => 'Using ExpressionLanguage on GroupSequence',
+            'D' => 'Not supported'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'Authorization checks can use: (multiple correct)',
+        'text' => 'DI: how do you define services by folder with resource globbing?',
         'answers' => [
-            'A' => 'Attributes (e.g., "ROLE_ADMIN") passed to isGranted()',
-            'B' => 'Voters to implement fine-grained logic',
-            'C' => 'Automatic DB schema changes upon isGranted() calls',
-            'D' => 'Passing a subject (object) and attribute to isGranted()'
+            'A' => 'services: _defaults: { autowire: true, autoconfigure: true } App\\: resource: \'../src/*\' exclude: \'../src/{DependencyInjection,Entity,Tests,Kernel.php}\'',
+            'B' => 'resource: \'../src\' include: all',
+            'C' => 'scan: \'../src/*\'',
+            'D' => 'autoload: psr4: App\\: src/'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
-
-    // EventSubscriberInterface
     [
-        'text' => 'Which static method must an EventSubscriber implement?',
+        'text' => 'Security: how do you get the current user in a controller?',
         'answers' => [
-            'A' => 'getSubscribedEvents()',
-            'B' => 'subscribe()',
-            'C' => 'onEvent()',
-            'D' => 'registerListeners()'
+            'A' => '$this->getUser()',
+            'B' => '$security->getUser()',
+            'C' => '$tokenStorage->getToken()->getUser()',
+            'D' => 'Request::getUser()'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B,C',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'EventSubscriber features include: (multiple correct)',
+        'text' => 'HTTP Cache: what does Response::isNotModified(Request) do?',
         'answers' => [
-            'A' => 'Return an array of event names and listener methods from getSubscribedEvents()',
-            'B' => 'Specify listener priorities in the subscription map',
-            'C' => 'Automatically persist events to a queue without configuration',
-            'D' => 'Be registered as a service and tagged automatically when autoconfigured'
+            'A' => 'Compares ETag/Last-Modified with the Request and sets 304 if appropriate',
+            'B' => 'Checks if the Response has expired',
+            'C' => 'Verifies no-store/no-cache',
+            'D' => 'Disables cache'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // Lock component
     [
-        'text' => 'Which LockFactory method creates a lock instance for a given resource?',
+        'text' => 'Console: how do you register a command automatically without services.yaml?',
         'answers' => [
-            'A' => 'createLock()',
-            'B' => 'make()',
-            'C' => 'newLock()',
-            'D' => 'getLock()'
+            'A' => 'With #[AsCommand] and autoconfigure',
+            'B' => 'With manual console.command tag',
+            'C' => 'With composer scripts',
+            'D' => 'It\'s not possible'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'Common Lock API actions include: (multiple correct)',
+        'text' => 'Testing: how do you perform a POST request with form data in the client?',
         'answers' => [
-            'A' => 'acquire() to obtain a lock',
-            'B' => 'release() to free it',
-            'C' => 'autoExtend() to schedule a lock renewal without implementation',
-            'D' => 'Using store-specific factories (Redis, flock, etc.)'
+            'A' => '$client->request(\'POST\',\'/submit\', [\'name\'=>\'Fabien\'])',
+            'B' => '$client->submitForm(\'Submit\', [\'name\'=>\'Fabien\'])',
+            'C' => '$client->post(\'/submit\', [\'name\'=>\'Fabien\'])',
+            'D' => '$client->send(\'POST\',\'/submit\',[\'name\'=>\'Fabien\'])'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // Rate Limiter
     [
-        'text' => 'Which factory creates a limiter instance for a named policy?',
+        'text' => 'Twig: how do you print a variable literally without interpreting it?',
         'answers' => [
-            'A' => 'RateLimiterFactory::create()',
-            'B' => 'LimiterRegistry::getPolicy()',
-            'C' => 'Rate::fromPolicy()',
-            'D' => 'LimiterFactory::makeLimiter()'
+            'A' => '{% verbatim %}{{ var }}{% endverbatim %}',
+            'B' => '{{ \'{{ var }}\' }}',
+            'C' => '{% raw %}{{ var }}{% endraw %}',
+            'D' => '{{ var|literal }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'Rate limiter API commonly provides: (multiple correct)',
+        'text' => 'Forms: how do you make a field required at the form level without a constraint?',
         'answers' => [
-            'A' => 'consume() or acquire() to decrement available tokens',
-            'B' => 'getLimit() to know configured capacity',
-            'C' => 'Automatic blocking of requests at kernel level without configuration',
-            'D' => 'Different limiter types (fixed-window, token-bucket, sliding window)'
+            'A' => 'required: true',
+            'B' => 'not_blank: true',
+            'C' => 'attr: { required: true }',
+            'D' => 'mandatory: true'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
-
-    // Notifier / Notification
     [
-        'text' => 'Which NotifierInterface method sends a Notification to one or more channels?',
+        'text' => 'Validation: how do you validate that a date is greater than today?',
         'answers' => [
-            'A' => 'send(Notification $notification, RecipientInterface|array $recipients = null)',
-            'B' => 'notify()',
-            'C' => 'deliver()',
-            'D' => 'push()'
+            'A' => '#[Assert\\GreaterThan(\'today\')]',
+            'B' => '#[Assert\\DateAfter(\'today\')]',
+            'C' => '#[Assert\\GreaterThan(value: \'today\')]',
+            'D' => '#[Assert\\DateGreater(\'today\')]'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'Notifier concepts include: (multiple correct)',
+        'text' => 'DI: how do you declare a non-shared (prototype) service?',
         'answers' => [
-            'A' => 'Notification objects describing subject, content and channels',
-            'B' => 'Transports and channels configured separately',
-            'C' => 'Automatic DB storage of all notifications by default',
-            'D' => 'Recipients provided via RecipientInterface or arrays'
+            'A' => 'scope: prototype',
+            'B' => 'shared: false',
+            'C' => 'prototype: true',
+            'D' => 'factory_shared: false'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
-
-    // Mime: Email API
     [
-        'text' => 'Which Email method sets the subject of the message?',
+        'text' => 'Security: how do you define the access decision strategy?',
         'answers' => [
-            'A' => 'subject()',
-            'B' => 'setSubject()',
-            'C' => 'withSubject()',
-            'D' => 'title()'
+            'A' => 'security: strategy: affirmative',
+            'B' => 'security: access_decision_manager: strategy: affirmative',
+            'C' => 'framework: security: strategy: unanimous',
+            'D' => 'security: voters: strategy: consensus'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Common Email methods include: (multiple correct)',
+        'text' => 'HTTP Cache: how do you enable ESI support in the HttpCache kernel?',
         'answers' => [
-            'A' => 'from() and to() for addresses',
-            'B' => 'text() and html() to set bodies',
-            'C' => 'attachFile() as the only way to add attachments (nonexistent)',
-            'D' => 'replyTo() to set reply address'
+            'A' => 'Enabled by default',
+            'B' => 'Override createSurrogate() to return Esi instance',
+            'C' => 'Setting framework.http_cache.esi: true',
+            'D' => 'Installing symfony/esi'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
-
-    // Stopwatch
     [
-        'text' => 'Which Stopwatch method starts a named event?',
+        'text' => 'Console: how do you define synopsis and usage examples?',
         'answers' => [
-            'A' => 'start()',
-            'B' => 'beginEvent()',
-            'C' => 'open()',
-            'D' => 'measure()'
+            'A' => '$this->setDescription(\'...\'); $this->setHelp("Example: ...")',
+            'B' => '$this->setSynopsis(\'...\')',
+            'C' => '#[AsCommand(description: \'...\', help: \'Example: ...\')]',
+            'D' => '$io->help(\'Example: ...\')'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'Stopwatch usage can include: (multiple correct)',
+        'text' => 'Testing: how do you check the content of the page <title>?',
         'answers' => [
-            'A' => 'start() and stop() to measure durations',
-            'B' => 'lap() to record intermediate marks if supported',
-            'C' => 'Persisting stopwatch events to production logs automatically without configuration',
-            'D' => 'Retrieving event details with getEvent() or exported metrics'
+            'A' => '$this->assertSelectorTextContains(\'title\', \'Home\')',
+            'B' => '$this->assertPageTitleContains(\'Home\')',
+            'C' => '$this->assertSelectorExists(\'title:contains(\\\'Home\\\')\')',
+            'D' => '$crawler->filter(\'title\')->text() === \'Home\''
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A,B,D',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
-
-    // PropertyAccess
     [
-        'text' => 'Which PropertyAccessorInterface method reads a value from an object/array path?',
+        'text' => 'Twig: how do you perform an include in sandbox mode?',
         'answers' => [
-            'A' => 'getValue()',
-            'B' => 'read()',
-            'C' => 'fetch()',
-            'D' => 'access()'
+            'A' => 'Enabling sandbox extension and using sandbox tag',
+            'B' => 'Using include_safe()',
+            'C' => 'Using sandbox_include() function',
+            'D' => 'Not natively supported by Twig'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'PropertyAccessor features include: (multiple correct)',
+        'text' => 'Forms: how do you define a CollectionType field with allow_add and allow_delete?',
         'answers' => [
-            'A' => 'getValue() and setValue() for paths like "author.name"',
-            'B' => 'supportsRead() and supportsWrite() to test capability',
-            'C' => 'Automatic database hydration of related entities by default',
-            'D' => 'Working with arrays and objects uniformly'
+            'A' => 'entry_type: TextType::class; allow_add: true; allow_delete: true',
+            'B' => 'type: text; mutable: true',
+            'C' => 'items: TextType; removable: true',
+            'D' => 'collection: add: true, delete: true'
         ],
-        'correctAnswers' => 'A,B,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
     [
-        'text' => 'What can PHP Reflection provide about a class?',
+        'text' => 'Validation: how do you customize the property path for a violation with the builder?',
         'answers' => [
-            'A' => 'Information about methods and properties',
-            'B' => 'The ability to execute private methods directly without invocation',
-            'C' => 'The source file path and defined start line',
-            'D' => 'Automatic instantiation without calling the constructor'
+            'A' => '$context->buildViolation(\'msg\')->atPath(\'email\')->addViolation()',
+            'B' => '$context->buildViolation(\'msg\')->on(\'email\')->addViolation()',
+            'C' => '$context->violation(\'msg\',\'email\')',
+            'D' => '$context->addViolationAt(\'email\',\'msg\')'
         ],
-        'correctAnswers' => 'A,C'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'What advantage do Generators provide in PHP?',
+        'text' => 'DI: how do you pass a typed service locator to a constructor?',
         'answers' => [
-            'A' => 'Memory-efficient iteration over large datasets',
-            'B' => 'Parallel execution on multiple CPU cores',
-            'C' => 'Automatic conversion of callbacks to promises',
-            'D' => 'Persisting variables between HTTP requests'
+            'A' => 'Type-hint Psr\\Container\\ContainerInterface',
+            'B' => 'Type-hint ServiceProviderInterface with autowire',
+            'C' => 'Type-hint ServiceLocator and bind !service_locator',
+            'D' => 'Use ContainerAwareInterface'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'C',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
     [
-        'text' => 'What benefits does SPL ArrayObject provide over native arrays?',
+        'text' => 'Security: how do you add remember me with authenticators?',
         'answers' => [
-            'A' => 'Object-oriented access and the ability to extend/override behavior',
-            'B' => 'Built-in persistent storage across requests',
-            'C' => 'Implements interfaces like Countable and ArrayAccess',
-            'D' => 'Automatic JSON conversion with custom rules'
+            'A' => 'firewalls: main: remember_me: secret: \'%kernel.secret%\'',
+            'B' => 'remember_me: token_provider: \'app.storage\'',
+            'C' => 'Adding RememberMeBadge in the Passport',
+            'D' => 'Only via manual cookie'
         ],
-        'correctAnswers' => 'A,C'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'What is WeakReference used for in PHP?',
+        'text' => 'HTTP Cache: which header indicates the response generation date?',
         'answers' => [
-            'A' => 'Hold a non-owning reference to an object allowing it to be garbage-collected',
-            'B' => 'Make objects immutable at runtime',
-            'C' => 'Clone large objects lazily on first write',
-            'D' => 'Serialize object references across processes'
+            'A' => 'Age',
+            'B' => 'Date',
+            'C' => 'Expires',
+            'D' => 'Last-Modified'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
     [
-        'text' => 'What is the role of PHP OPcache?',
+        'text' => 'Console: how do you read hidden input (password) with the helper?',
         'answers' => [
-            'A' => 'Cache compiled PHP bytecode in shared memory to speed execution',
-            'B' => 'Cache database query results transparently',
-            'C' => 'Optimize delivery of static assets (CSS/JS)',
-            'D' => 'Manage session storage and locking'
+            'A' => '$question = new Question("Password:"); $question->setHidden(true); $helper->ask(...)',
+            'B' => '$helper->askHidden("Password:")',
+            'C' => '$io->askHidden("Password:")',
+            'D' => '$io->askQuestion(new QuestionHidden("Password"))'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,C',
+        'linkAtDocumentation' => 'sf-doc/console.rst'
     ],
     [
-        'text' => 'What are PHP Attributes used for?',
+        'text' => 'Testing: how do you access a private service in the container during tests?',
         'answers' => [
-            'A' => 'Attach structured metadata to classes, functions and properties',
-            'B' => 'Replace namespaces and use statements',
-            'C' => 'Be read at runtime via Reflection for custom logic',
-            'D' => 'Automatically register services in a DI container without config'
+            'A' => 'It\'s not possible',
+            'B' => 'Using static::getContainer()->get()',
+            'C' => 'Making it public: true in test config',
+            'D' => 'Autowire in the test via constructor'
         ],
-        'correctAnswers' => 'A,C'
+        'correctAnswers' => 'B,C',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
     [
-        'text' => 'Which benefit comes from named arguments in PHP?',
+        'text' => 'Twig: how do you import macros from a file?',
         'answers' => [
-            'A' => 'Call functions specifying parameters by name regardless of order',
-            'B' => 'Skip required parameters at runtime without defaults',
-            'C' => 'Provide method overloading semantics',
-            'D' => 'Improve readability when functions have many optional parameters'
+            'A' => '{% import \'macros.html.twig\' as m %}',
+            'B' => '{% use \'macros.html.twig\' %}',
+            'C' => '{{ import(\'macros.html.twig\') }}',
+            'D' => '{% from \'macros.html.twig\' import input as input_macro %}'
         ],
-        'correctAnswers' => 'A,D'
+        'correctAnswers' => 'A,D',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
     ],
     [
-        'text' => 'What do union types allow in PHP signatures?',
+        'text' => 'Forms: how do you customize a field label?',
         'answers' => [
-            'A' => 'Accept multiple possible types for a parameter or return value',
-            'B' => 'Declare generic type parameters',
-            'C' => 'Enforce constraints across unrelated classes',
-            'D' => 'Return multiple separate values from a function'
+            'A' => 'label: \'Email\'',
+            'B' => 'attr: { label: \'Email\' }',
+            'C' => 'label_text: \'Email\'',
+            'D' => 'widget_label: \'Email\''
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/forms.rst'
     ],
     [
-        'text' => 'What feature distinguishes the match expression from switch in PHP?',
+        'text' => 'Validation: how do you define a Regex constraint with flags?',
         'answers' => [
-            'A' => 'match is an expression and returns a value',
-            'B' => 'match allows implicit fall-through between arms',
-            'C' => 'match requires explicit break statements',
-            'D' => 'match uses strict comparison by default'
+            'A' => '#[Assert\\Regex(pattern: \'/^[a-z]+$/i\')]',
+            'B' => '#[Assert\\Regex(\'/^[a-z]+$/i\')]',
+            'C' => '#[Assert\\Regex(regex: \'^[a-z]+$\', flags: \'i\')]',
+            'D' => '#[Assert\\Regex(pattern: \'^[a-z]+$\', options: \'i\')]'
         ],
-        'correctAnswers' => 'A,D'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/validation.rst'
     ],
     [
-        'text' => 'What are Fibers in PHP used for?',
+        'text' => 'DI: how do you define an autowire alias for an interface?',
         'answers' => [
-            'A' => 'Provide lightweight cooperative concurrency (suspend/resume)',
-            'B' => 'Automatically make code thread-safe',
-            'C' => 'Schedule cron-like background tasks',
-            'D' => 'Fork new OS processes from PHP'
+            'A' => 'App\\Contract\\FooInterface: \'@App\\Service\\Foo\'',
+            'B' => 'autowire: { App\\Contract\\FooInterface: \'@App\\Service\\Foo\' }',
+            'C' => 'bind: \'App\\Contract\\FooInterface $foo\': \'@App\\Service\\Foo\'',
+            'D' => 'alias: { \'App\\Contract\\FooInterface\': \'@App\\Service\\Foo\' }'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A',
+        'linkAtDocumentation' => 'sf-doc/service_container.rst'
     ],
     [
-        'text' => 'Which special type hints were introduced or standardized in recent PHP versions?',
+        'text' => 'Security: in Twig, how do you check an authorization?',
         'answers' => [
-            'A' => 'mixed and never',
-            'B' => 'any and optional',
-            'C' => 'nullable-only types that replace union types',
-            'D' => 'dynamic and static'
+            'A' => '{% if is_granted(\'EDIT\', post) %}...{% endif %}',
+            'B' => '{{ is_granted(\'EDIT\', post) ? \'ok\' : \'ko\' }}',
+            'C' => '{% authorize \'EDIT\' post %}',
+            'D' => '{{ granted(\'EDIT\', post) }}'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,B',
+        'linkAtDocumentation' => 'sf-doc/security.rst'
     ],
     [
-        'text' => 'Which base interface do Exceptions and Errors implement in PHP?',
+        'text' => 'HTTP Cache: what does Response::setTtl() do?',
         'answers' => [
-            'A' => 'Throwable',
-            'B' => 'ExceptionInterface',
-            'C' => 'ErrorHandlerInterface',
-            'D' => 'ThrowableInterface'
+            'A' => 'Sets shared time-to-live (s-maxage)',
+            'B' => 'Sets the remaining time-to-live calculated from Date',
+            'C' => 'Sets Expires',
+            'D' => 'Clears cache'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'B',
+        'linkAtDocumentation' => 'sf-doc/http_cache.rst'
     ],
     [
-        'text' => 'What does PSR-4 autoloading map in Composer?',
+        'text' => 'Console: how do you handle OS signals (SIGINT) during a long-running command?',
         'answers' => [
-            'A' => 'Namespace prefixes to filesystem paths',
-            'B' => 'Composer scripts to Git hooks',
-            'C' => 'Vendor packages to package managers',
-            'D' => 'Class constants to environment variables'
+            'A' => 'Using pcntl_signal in the command',
+            'B' => 'Using SignalRegistry and addSignalListener',
+            'C' => 'Not supported',
+            'D' => 'Using Process component that forwards signals'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'D',
+        'linkAtDocumentation' => 'sf-doc/process.rst'
     ],
     [
-        'text' => 'What is a PHPUnit data provider used for?',
+        'text' => 'Testing: how do you simulate HTTP basic authentication in the client?',
         'answers' => [
-            'A' => 'Run the same test multiple times with different datasets',
-            'B' => 'Automatically mock external HTTP services',
-            'C' => 'Generate code coverage reports',
-            'D' => 'Persist test results to a database'
+            'A' => '$client->setServerParameter(\'PHP_AUTH_USER\',\'u\'); $client->setServerParameter(\'PHP_AUTH_PW\',\'p\')',
+            'B' => '$client->authenticate(\'u\',\'p\')',
+            'C' => '$client->loginBasic(\'u\',\'p\')',
+            'D' => '$client->request(\'GET\',\'/\', server: [\'PHP_AUTH_USER\'=>\'u\',\'PHP_AUTH_PW\'=>\'p\'])'
         ],
-        'correctAnswers' => 'A'
+        'correctAnswers' => 'A,D',
+        'linkAtDocumentation' => 'sf-doc/testing.rst'
     ],
     [
-        'text' => 'What does the JSON_THROW_ON_ERROR option do in PHP\'s json_encode/json_decode?',
+        'text' => 'Twig: how do you count elements of an array?',
         'answers' => [
-            'A' => 'Throw a JsonException on error instead of returning false',
-            'B' => 'Return null instead of throwing on malformed JSON',
-            'C' => 'Silently log errors to the PHP error log',
-            'D' => 'Attempt to automatically correct invalid JSON'
+            'A' => '{{ items|count }}',
+            'B' => '{{ count(items) }}',
+            'C' => '{{ items.length }}',
+            'D' => '{{ length(items) }}'
         ],
-        'correctAnswers' => 'A'
-    ],
+        'correctAnswers' => 'A,B,D',
+        'linkAtDocumentation' => 'sf-doc/templates.rst'
+    ]
 ];
