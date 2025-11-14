@@ -19,13 +19,14 @@ class ExamCommand extends Command
 
         $style->info(
             <<<EOF
-                The exam has started, you have 75 questions to answer.
+                The exam has started.
                 Question can have multiple answers, separated by a comma.
             EOF
         );
 
         $examFactory = new ExamFactory();
         $exam = $examFactory->make();
+        $style->writeln(sprintf('You have %d questions to answer.', $exam->getNumberOfQuestions()));
         $questions = $exam->getQuestions();
 
         $progressBar = $style->createProgressBar(count($questions));
