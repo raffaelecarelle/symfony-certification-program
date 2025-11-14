@@ -11,7 +11,7 @@ final class Question
         private readonly string $text,
         private readonly array $answers,
         private readonly string $correctAnswers,
-        private readonly ?string $linkAtDocumentation,
+        private readonly ?string $linkAtDocumentation = null,
         private ?bool $isCorrect = null
     ) {
     }

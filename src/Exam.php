@@ -32,6 +32,10 @@ final readonly class Exam
 
     public function getPercentage(): float
     {
+        if ($this->getNumberOfQuestions() === 0) {
+            return 0;
+        }
+
         return $this->getCorrectAnswers() / $this->getNumberOfQuestions() * 100;
     }
 
@@ -47,11 +51,19 @@ final readonly class Exam
 
     public function getPercentageCorrect(): float
     {
+        if ($this->getNumberOfQuestions() === 0) {
+            return 0;
+        }
+
         return $this->getCorrectCount() / $this->getNumberOfQuestions() * 100;
     }
 
     public function getPercentageIncorrect(): float
     {
+        if ($this->getNumberOfQuestions() === 0) {
+            return 0;
+        }
+
         return $this->getIncorrectCount() / $this->getNumberOfQuestions() * 100;
     }
 }
