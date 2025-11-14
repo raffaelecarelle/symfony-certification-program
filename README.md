@@ -5,56 +5,35 @@ UNOFFICIAL Symfony Certification Program with exercises
 
 A lightweight tool to simulate the official Symfony certification exam.
 
-Goals
+### Goals
 - Simulate a 75-question multiple-choice exam for Symfony certification.
 - Support questions with one or more correct answers (single or multiple selection).
 - Help candidates practice under exam-like conditions, with references to the official documentation.
 
-What this project includes
+### What this project includes
 - sf-doc: a packaged subset or links to the official Symfony documentation used as reference.
 - php-doc: a packaged subset or links to the official PHP documentation used as reference.
 - A question bank and the simulator logic (75-question mode, randomization, scoring).
 
-Key features
+### Key features
 - 75-question simulated session.
 - Multiple-choice questions with support for multiple correct answers.
 - Scoring and feedback with correct/incorrect indication and a link for further reading when available.
 - Ability to consult the reference documentation (sf-doc and php-doc) for each question.
 
-Project structure (actual)
-- /sf-doc/      -> Symfony documentation references/excerpts
-- /php-doc/     -> PHP documentation references/excerpts
-- /data/        -> Question bank (questions.php)
-- /src/         -> Simulator source code (Console)
-- /bin/         -> CLI entry point (bin/console)
-- /tests/       -> Automated tests (PHPUnit)
-- README.md     -> This file
-
-Question format (simplified example)
-- text: question text
-- answers: map of options labeled with letters (A, B, C, ...)
-- correctAnswers: string with the correct labels separated by commas (e.g., "A" or "A,C")
-- linkAtDocumentation: optional; internal path under sf-doc/php-doc that will be mapped to public URLs (symfony.com/php.net)
-
-How to run (overview)
-1. Install project dependencies (Composer).
-2. Launch the CLI entry point.
-3. Start a 75-question session and answer in sequence.
-4. Get the final score and documentation links for further reading.
-
-Requirements
+## Requirements
 - PHP >= 8.2
 - Standard PHP extensions (no additional special requirements)
 - Composer
 
-Installation
+## Installation
 ```bash
 git clone https://github.com/raffaelecarelle/symfony-certification-program.git
 cd symfony-certification-program
 composer install
 ```
 
-Usage (CLI)
+### Usage (CLI)
 - Unix/macOS:
   ```bash
   php bin/console exam:start
@@ -67,18 +46,12 @@ Usage (CLI)
   php bin/console exam:start
   ```
 
-Usage notes
+### Usage notes
 - Some questions have multiple correct answers: select them by separating with a comma (e.g., "A,C").
 - When the answer is incorrect, a link to the corresponding official documentation (if available) will be shown.
 - At the end of the exam, a table with percentage, number of correct and incorrect answers is displayed.
 
-Questions and documentation
-- The questions reside in: `data/questions.php`.
-- Answer labels are shuffled at each session; references to the correct ones are recalculated automatically.
-- Paths `sf-doc/... .rst` are mapped to `https://symfony.com/doc/current/... .html`.
-- Paths `php-doc/... .xml` are mapped to `https://www.php.net/manual/en/... .php`.
-
-Development: tests and code quality
+## Development: tests and code quality
 - Run tests (PHPUnit):
   ```bash
   ./vendor/bin/phpunit -c phpunit.xml.dist
@@ -96,8 +69,8 @@ Development: tests and code quality
   ./vendor/bin/php-cs-fixer fix --diff
   ```
 
-Contributing
-Contributions of any kind are welcome. Suggested guidelines:
+## Contributing
+### Contributions of any kind are welcome. Suggested guidelines:
 - Open an issue to propose new questions or to fix existing ones.
 - For PRs that modify the question bank, keep explanations concise and include a reference (sf-doc/php-doc) when possible.
 - Run tests and quality tools locally before opening the PR:
@@ -106,8 +79,8 @@ Contributions of any kind are welcome. Suggested guidelines:
   - `./vendor/bin/php-cs-fixer fix --diff`
 - Stick to PHP >= 8.2 and the project's current standards.
 
-License
+## License
 - This project is released under the GPL-3.0-or-later license. See the [LICENSE](LICENSE) file.
 
-Disclaimer
+## Disclaimer
 - UNOFFICIAL project, not affiliated with Symfony or SensioLabs. Trademarks and logos are the property of their respective owners.
