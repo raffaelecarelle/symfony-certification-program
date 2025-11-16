@@ -4,7 +4,7 @@ namespace App;
 
 final readonly class ExamFactory
 {
-    public const QUESTIONS_COUNT = 75;
+    public const QUESTIONS_COUNT = 100;
 
     public function __construct(
         private QuestionProvider $questionProvider = new QuestionProvider(),
