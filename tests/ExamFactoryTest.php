@@ -22,13 +22,13 @@ class ExamFactoryTest extends TestCase
         $exam = $examFactory->make();
 
         self::assertInstanceOf(Exam::class, $exam);
-        self::assertCount(75, $exam->getQuestions());
+        self::assertCount(ExamFactory::QUESTIONS_COUNT, $exam->getQuestions());
     }
 
     public function testMakeShufflesQuestions(): void
     {
         $mockQuestionProvider = $this->createMock(QuestionProvider::class);
-        $questions = $this->generateMockQuestions(75);
+        $questions = $this->generateMockQuestions(ExamFactory::QUESTIONS_COUNT);
         $mockQuestionProvider->expects(self::once())
             ->method('get')
             ->willReturn($questions);
@@ -41,7 +41,7 @@ class ExamFactoryTest extends TestCase
         $shuffledTexts = array_map(fn (Question $q) => $q->getText(), $exam->getQuestions());
 
         self::assertNotSame($originalTexts, $shuffledTexts);
-        self::assertCount(75, $shuffledTexts);
+        self::assertCount(ExamFactory::QUESTIONS_COUNT, $shuffledTexts);
     }
 
     /**
