@@ -19,7 +19,7 @@ final readonly class ExamFactory
         $sfQuestions = $this->questionProvider->getSymfonyQuestions();
         $phpQuestions = $this->questionProvider->getPhpQuestions();
 
-        $phpIndexes = array_rand($phpQuestions, 25 /* For now */);
+        $phpIndexes = array_rand($phpQuestions, 25 /* For now. TODO increment this */);
 
         if ($options['symfonyOnly'] ?? false) {
             $phpIndexes = [];
