@@ -6,7 +6,7 @@ UNOFFICIAL Symfony Certification Program with exercises
 A lightweight tool to simulate the official Symfony certification exam.
 
 ### Goals
-- Simulate a 75-question multiple-choice exam for Symfony certification.
+- Simulate a 100-question multiple-choice exam for Symfony certification.
 - Support questions with one or more correct answers (single or multiple selection).
 - Help candidates practice under exam-like conditions, with references to the official documentation.
 
