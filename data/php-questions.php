@@ -3642,7 +3642,7 @@ return [
             1 => 'B',
             2 => 'C',
         ],
-        'linkAtDocumentation' => 'php-doc/appendices/migration82/new-features.xml',
+        'linkAtDocumentation' => 'https://wiki.php.net/rfc/dnf_types',
     ],
     [
         'text' => 'PHP 8.2: Which standalone types were introduced?',

@@ -75,7 +75,7 @@ final class Question
         $suffix = '.xml';
 
         if (!str_starts_with($docPath, $prefix) || !str_ends_with($docPath, $suffix)) {
-            return null;
+            return $docPath;
         }
 
         // Remove prefix/suffix

@@ -69,7 +69,7 @@ class ExamCommand extends Command
                 $style->success('Correct!');
             } else {
                 if (null !== $question->getLinkAtDocumentation()) {
-                    $style->error('The answer is incorrect. The link at documentation is: '.$question->getLinkAtDocumentation());
+                    $style->error("The answer is incorrect.\n\r The link at documentation is: ".$question->getLinkAtDocumentation());
                 } else {
                     $style->error('The answer is incorrect.');
                 }
