@@ -62,6 +62,10 @@ final class Question
             return null;
         }
 
+        if (str_starts_with($this->linkAtDocumentation, 'http://') || str_starts_with($this->linkAtDocumentation, 'https://')) {
+            return $this->linkAtDocumentation;
+        }
+
         if (str_starts_with($this->linkAtDocumentation, 'php-doc/')) {
             return $this->mapPhpDocPathToPhpNetUrl($this->linkAtDocumentation);
         }
@@ -75,7 +79,7 @@ final class Question
         $suffix = '.xml';
 
         if (!str_starts_with($docPath, $prefix) || !str_ends_with($docPath, $suffix)) {
-            return $docPath;
+            return null;
         }
 
         // Remove prefix/suffix
