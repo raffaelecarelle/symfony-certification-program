@@ -51,8 +51,8 @@ The project is organized into the following components:
 
 ## Installation
 ```bash
-git clone https://github.com/raffaelecarelle/symfony-certification-program.git
-cd symfony-certification-program
+git clone https://github.com/raffaelecarelle/symfony-certification-simulator.git
+cd symfony-certification-simulator
 composer install
 ```
 
