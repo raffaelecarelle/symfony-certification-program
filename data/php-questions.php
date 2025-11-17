@@ -1860,4 +1860,637 @@ return [
         ],
         'linkAtDocumentation' => 'php-doc/appendices/migration80/new-features.xml',
     ],
+    [
+        'text' => 'OOP: What type of copy does PHP perform when cloning an object with the clone keyword?',
+        'answers' => [
+            'A' => 'Shallow copy of all object properties',
+            'B' => 'Deep copy of all object properties',
+            'C' => 'References are preserved as references',
+            'D' => 'Static properties are cloned',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/cloning.xml',
+    ],
+    [
+        'text' => 'OOP: When is the __clone() magic method called during object cloning?',
+        'answers' => [
+            'A' => 'After cloning is complete on the newly created object',
+            'B' => 'Before cloning starts on the original object',
+            'C' => 'During the cloning process',
+            'D' => 'On both original and cloned objects',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/cloning.xml',
+    ],
+    [
+        'text' => 'OOP: What happens if __sleep() returns a private property name from a parent class?',
+        'answers' => [
+            'A' => 'Causes an E_NOTICE error',
+            'B' => 'Works correctly and serializes the property',
+            'C' => 'Throws a fatal error',
+            'D' => 'The property is silently ignored',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/serialization.xml',
+    ],
+    [
+        'text' => 'OOP: Which modern serialization methods take precedence over __sleep() and __wakeup()?',
+        'answers' => [
+            'A' => '__serialize()',
+            'B' => '__unserialize()',
+            'C' => '__toString()',
+            'D' => '__set_state()',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/serialization.xml',
+    ],
+    [
+        'text' => 'OOP: What must __serialize() return or else it will throw a TypeError?',
+        'answers' => [
+            'A' => 'An associative array',
+            'B' => 'An array of property names',
+            'C' => 'A string',
+            'D' => 'void',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/serialization.xml',
+    ],
+    [
+        'text' => 'OOP Late Static Bindings: What is the key difference between self:: and static::?',
+        'answers' => [
+            'A' => 'self:: resolves to the class where the method is defined',
+            'B' => 'static:: resolves to the class that was called at runtime',
+            'C' => 'self:: is faster than static::',
+            'D' => 'static:: can only be used in static methods',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/late-static-bindings.xml',
+    ],
+    [
+        'text' => 'OOP Late Static Bindings: Which types of calls are considered "forwarding calls" in LSB?',
+        'answers' => [
+            'A' => 'self::',
+            'B' => 'parent::',
+            'C' => 'static::',
+            'D' => 'ClassName::method()',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/late-static-bindings.xml',
+    ],
+    [
+        'text' => 'OOP: When comparing objects with ==, which conditions must be met for them to be equal?',
+        'answers' => [
+            'A' => 'Same class',
+            'B' => 'Same attributes with same values (recursive ==)',
+            'C' => 'Same memory address',
+            'D' => 'Implement Comparable interface',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/object-comparison.xml',
+    ],
+    [
+        'text' => 'OOP: What does the === operator check when comparing objects?',
+        'answers' => [
+            'A' => 'Same instance of same class (reference comparison)',
+            'B' => 'Same class and same property values',
+            'C' => 'Same memory address only',
+            'D' => 'Strict type equality',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/object-comparison.xml',
+    ],
+    [
+        'text' => 'Type System: Which scalar type aliases are NOT supported and will be treated as class/interface names?',
+        'answers' => [
+            'A' => 'boolean',
+            'B' => 'integer',
+            'C' => 'double',
+            'D' => 'float',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
+    [
+        'text' => 'Type System: When are pass-by-reference parameter types checked?',
+        'answers' => [
+            'A' => 'Only on function entry',
+            'B' => 'On function entry and return',
+            'C' => 'Every time the variable is modified',
+            'D' => 'Never checked',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
+    [
+        'text' => 'Type System: From which PHP version was the void return type deprecated for functions returning by reference?',
+        'answers' => [
+            'A' => 'PHP 8.1',
+            'B' => 'PHP 8.0',
+            'C' => 'PHP 7.4',
+            'D' => 'PHP 8.2',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
+    [
+        'text' => 'Type System: Can the callable type be used as a class property type declaration?',
+        'answers' => [
+            'A' => 'No, it cannot be used for property types',
+            'B' => 'Yes, in all PHP versions',
+            'C' => 'Yes, starting from PHP 8.0',
+            'D' => 'Yes, but only for static properties',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
+    [
+        'text' => 'Type System: What does the mixed type alias represent?',
+        'answers' => [
+            'A' => 'object|resource|array|string|float|int|bool|null',
+            'B' => 'string|int|float|bool',
+            'C' => 'any type except null',
+            'D' => 'object|array only',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/type-system.xml',
+    ],
+    [
+        'text' => 'Type System: What does the iterable type alias represent?',
+        'answers' => [
+            'A' => 'Traversable|array',
+            'B' => 'array|Iterator',
+            'C' => 'ArrayAccess|Traversable',
+            'D' => 'array only',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/type-system.xml',
+    ],
+    [
+        'text' => 'SPL: Which interfaces does ArrayIterator implement?',
+        'answers' => [
+            'A' => 'SeekableIterator',
+            'B' => 'ArrayAccess',
+            'C' => 'Serializable',
+            'D' => 'Countable',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+            3 => 'D',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/arrayiterator.xml',
+    ],
+    [
+        'text' => 'SPL: What is the ArrayIterator::ARRAY_AS_PROPS flag used for?',
+        'answers' => [
+            'A' => 'Makes array entries accessible as object properties',
+            'B' => 'Converts array to object',
+            'C' => 'Makes properties accessible as array entries',
+            'D' => 'Enables property validation',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/arrayiterator.xml',
+    ],
+    [
+        'text' => 'SPL: What is the official recommendation about wrapping objects with ArrayObject?',
+        'answers' => [
+            'A' => 'Its usage with objects is discouraged as fundamentally flawed',
+            'B' => 'It is recommended for all object wrapping',
+            'C' => 'It is safe for all use cases',
+            'D' => 'It is required for Serializable objects',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/arrayobject.xml',
+    ],
+    [
+        'text' => 'SPL: What are the two purposes of SplObjectStorage?',
+        'answers' => [
+            'A' => 'Object set (ignoring data)',
+            'B' => 'Map from objects to data',
+            'C' => 'Array of arrays',
+            'D' => 'String key-value store',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/splobjectstorage.xml',
+    ],
+    [
+        'text' => 'SPL: What is the critical behavior note about SplPriorityQueue regarding elements with identical priority?',
+        'answers' => [
+            'A' => 'The order is undefined and may differ from insertion order',
+            'B' => 'They are ordered by insertion time',
+            'C' => 'They are ordered alphabetically',
+            'D' => 'They cause an exception',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/splpriorityqueue.xml',
+    ],
+    [
+        'text' => 'SPL: Can SplHeap be instantiated directly?',
+        'answers' => [
+            'A' => 'No, it is abstract and must be extended',
+            'B' => 'Yes, it can be instantiated',
+            'C' => 'Yes, but only in PHP 8.0+',
+            'D' => 'Yes, but requires configuration',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/splheap.xml',
+    ],
+    [
+        'text' => 'SPL: What iteration mode does SplStack use?',
+        'answers' => [
+            'A' => 'IT_MODE_LIFO (Last In, First Out)',
+            'B' => 'IT_MODE_FIFO (First In, First Out)',
+            'C' => 'IT_MODE_KEEP',
+            'D' => 'IT_MODE_DELETE',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/splstack.xml',
+    ],
+    [
+        'text' => 'SPL: Which RecursiveIteratorIterator modes are available?',
+        'answers' => [
+            'A' => 'LEAVES_ONLY (default, only leaf nodes)',
+            'B' => 'SELF_FIRST (parent before children)',
+            'C' => 'CHILD_FIRST (children before parent)',
+            'D' => 'CATCH_GET_CHILD (catch exceptions during getChildren)',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+            3 => 'D',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/spl/recursiveiteratoriterator.xml',
+    ],
+    [
+        'text' => 'Arrays: What does array_filter() do when called without a callback function?',
+        'answers' => [
+            'A' => 'Removes "empty" entries as defined by empty() function',
+            'B' => 'Returns the array unchanged',
+            'C' => 'Throws an exception',
+            'D' => 'Removes null values only',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-filter.xml',
+    ],
+    [
+        'text' => 'Arrays: Which array_filter() mode constants are available?',
+        'answers' => [
+            'A' => 'ARRAY_FILTER_USE_KEY (pass key only)',
+            'B' => 'ARRAY_FILTER_USE_BOTH (pass both value and key)',
+            'C' => 'ARRAY_FILTER_USE_VALUE (pass value only)',
+            'D' => 'Default mode 0 (pass value only)',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            3 => 'D',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-filter.xml',
+    ],
+    [
+        'text' => 'Arrays: What does array_map(null, $a, $b, $c) do?',
+        'answers' => [
+            'A' => 'Performs a zip operation on the arrays',
+            'B' => 'Returns an empty array',
+            'C' => 'Throws an exception',
+            'D' => 'Returns only the first array',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-map.xml',
+    ],
+    [
+        'text' => 'Arrays: What happens to array keys when array_map() is used with multiple arrays?',
+        'answers' => [
+            'A' => 'Returns sequential integer keys (0, 1, 2, ...)',
+            'B' => 'Preserves keys from the first array',
+            'C' => 'Preserves keys from all arrays',
+            'D' => 'Throws an exception if keys conflict',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-map.xml',
+    ],
+    [
+        'text' => 'Arrays: What does array_reduce() return when given an empty array with no initial value?',
+        'answers' => [
+            'A' => 'null',
+            'B' => 'false',
+            'C' => '0',
+            'D' => 'Throws an exception',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-reduce.xml',
+    ],
+    [
+        'text' => 'Arrays: Which data structures can array_column() work with?',
+        'answers' => [
+            'A' => 'Multi-dimensional arrays',
+            'B' => 'Arrays of objects with public properties',
+            'C' => 'Arrays of objects with protected/private properties (requires __get() and __isset())',
+            'D' => 'Strings',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-column.xml',
+    ],
+    [
+        'text' => 'Arrays: Which SORT flags can be used with array_multisort()?',
+        'answers' => [
+            'A' => 'SORT_REGULAR (normal comparison)',
+            'B' => 'SORT_NUMERIC (numeric comparison)',
+            'C' => 'SORT_STRING (string comparison)',
+            'D' => 'SORT_NATURAL (natural ordering)',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+            3 => 'D',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-multisort.xml',
+    ],
+    [
+        'text' => 'Arrays: What is important to know about the stability of array_multisort()?',
+        'answers' => [
+            'A' => 'It is an unstable sort - elements with equal values may not maintain original order',
+            'B' => 'It is a stable sort - maintains original order for equal elements',
+            'C' => 'Stability depends on the SORT flag used',
+            'D' => 'Stability is only guaranteed for numeric arrays',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-multisort.xml',
+    ],
+    [
+        'text' => 'Arrays: What is the difference between array_diff() and array_diff_key()?',
+        'answers' => [
+            'A' => 'array_diff() compares values, array_diff_key() compares keys',
+            'B' => 'array_diff() compares keys, array_diff_key() compares values',
+            'C' => 'They are identical functions',
+            'D' => 'array_diff_key() is case-sensitive',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/reference/array/functions/array-diff.xml',
+    ],
+    [
+        'text' => 'Errors: What is the relationship between Error and Exception classes?',
+        'answers' => [
+            'A' => 'Error does NOT inherit from Exception',
+            'B' => 'Both implement Throwable',
+            'C' => 'catch (Exception $e) will NOT catch Error objects',
+            'D' => 'Error inherits from Exception',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/php7.xml',
+    ],
+    [
+        'text' => 'Errors: Which error types are descendants of Error class?',
+        'answers' => [
+            'A' => 'ArithmeticError',
+            'B' => 'TypeError',
+            'C' => 'ValueError',
+            'D' => 'RuntimeException',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/php7.xml',
+    ],
+    [
+        'text' => 'Errors: Which error type extends ArithmeticError?',
+        'answers' => [
+            'A' => 'DivisionByZeroError',
+            'B' => 'TypeError',
+            'C' => 'ValueError',
+            'D' => 'ParseError',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/php7.xml',
+    ],
+    [
+        'text' => 'Errors: Which error type extends TypeError?',
+        'answers' => [
+            'A' => 'ArgumentCountError',
+            'B' => 'ValueError',
+            'C' => 'ParseError',
+            'D' => 'AssertionError',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/php7.xml',
+    ],
+    [
+        'text' => 'Errors: Which error type extends CompileError?',
+        'answers' => [
+            'A' => 'ParseError',
+            'B' => 'TypeError',
+            'C' => 'ValueError',
+            'D' => 'ArithmeticError',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/php7.xml',
+    ],
+    [
+        'text' => 'Errors: What is the recommended error_reporting setting for production environments?',
+        'answers' => [
+            'A' => 'E_ALL & ~E_NOTICE & ~E_DEPRECATED or still E_ALL',
+            'B' => 'E_ALL',
+            'C' => '0 (disable all errors)',
+            'D' => 'E_ERROR only',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/errors/basics.xml',
+    ],
+    [
+        'text' => 'HTTP: Which HTTP status codes indicate successful responses?',
+        'answers' => [
+            'A' => '200 OK',
+            'B' => '201 Created',
+            'C' => '204 No Content',
+            'D' => '304 Not Modified',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/features/http-auth.xml',
+    ],
+    [
+        'text' => 'HTTP: Which HTTP status codes indicate redirection?',
+        'answers' => [
+            'A' => '301 Moved Permanently',
+            'B' => '302 Found',
+            'C' => '307 Temporary Redirect',
+            'D' => '400 Bad Request',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/features/http-auth.xml',
+    ],
+    [
+        'text' => 'HTTP: Which HTTP methods are idempotent?',
+        'answers' => [
+            'A' => 'GET',
+            'B' => 'PUT',
+            'C' => 'DELETE',
+            'D' => 'POST',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/features/http-auth.xml',
+    ],
+    [
+        'text' => 'HTTP: What is the purpose of the HEAD method?',
+        'answers' => [
+            'A' => 'Retrieve headers like GET but without response body',
+            'B' => 'Submit form data',
+            'C' => 'Delete a resource',
+            'D' => 'Create a new resource',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/features/http-auth.xml',
+    ],
+    [
+        'text' => 'HTTP: What do Cache-Control: no-cache and no-store directives mean?',
+        'answers' => [
+            'A' => 'no-cache means must revalidate before using cached response',
+            'B' => 'no-store means do not cache at all',
+            'C' => 'no-cache means do not cache at all',
+            'D' => 'no-store means revalidate before use',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+        ],
+        'linkAtDocumentation' => 'php-doc/features/cookies.xml',
+    ],
+    [
+        'text' => 'OOP Variance: When is a type considered MORE SPECIFIC in the type system?',
+        'answers' => [
+            'A' => 'A type is removed from a union type',
+            'B' => 'A type is added to an intersection type',
+            'C' => 'A class type is changed to a child class type',
+            'D' => 'A type is added to a union type',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+            1 => 'B',
+            2 => 'C',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/oop5/variance.xml',
+    ],
+    [
+        'text' => 'Type System: Which PHP version introduced class property typing?',
+        'answers' => [
+            'A' => 'PHP 7.4',
+            'B' => 'PHP 7.3',
+            'C' => 'PHP 8.0',
+            'D' => 'PHP 7.2',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
+    [
+        'text' => 'Type System: Which PHP version introduced class constant typing?',
+        'answers' => [
+            'A' => 'PHP 8.3',
+            'B' => 'PHP 8.2',
+            'C' => 'PHP 8.1',
+            'D' => 'PHP 8.0',
+        ],
+        'correctAnswers' => [
+            0 => 'A',
+        ],
+        'linkAtDocumentation' => 'php-doc/language/types/declarations.xml',
+    ],
 ];
