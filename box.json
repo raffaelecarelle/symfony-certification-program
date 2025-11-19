@@ -1,13 +1,15 @@
 {
-    "main": "bin/exam-start",
+    "alias": "symfony-certification.phar",
     "output": "symfony-certification.phar",
     "chmod": "0755",
+    "stub": true,
     "directories": [
         "src",
         "data"
     ],
     "files": [
-        "composer.json"
+        "composer.json",
+        "bin/exam-start"
     ],
     "finder": [
         {
@@ -19,5 +21,6 @@
             "in": "vendor"
         }
     ],
+    "main": "bin/exam-start",
     "compression": "GZ"
 }

@@ -50,24 +50,36 @@ The project is organized into the following components:
 - Composer
 
 ## Installation
+
+### Quick Start (Recommended)
+Download the latest PHAR release:
+
 ```bash
-git clone https://github.com/raffaelecarelle/symfony-certification-simulator.git
-cd symfony-certification-simulator
-composer install
+wget https://github.com/raffaelecarelle/symfony-certification-simulator/releases/latest/download/symfony-certification.phar
+chmod +x symfony-certification.phar
+./symfony-certification.phar
+```
+
+Or install globally:
+```bash
+sudo mv symfony-certification.phar /usr/local/bin/symfony-certification
+symfony-certification
 ```
 
 ### Usage (CLI)
-- Unix/macOS:
-  ```bash
-  php bin/exam-start
-  # or, if executable
-  chmod +x bin/exam-start
-  ./bin/exam-start
-  ```
-- Windows (PowerShell/CMD):
-  ```powershell
-  php bin/exam-start
-  ```
+```bash
+# Run with default settings (50 PHP + 50 Symfony questions)
+./symfony-certification.phar
+
+# Run with only PHP questions
+./symfony-certification.phar --php-only
+
+# Run with only Symfony questions
+./symfony-certification.phar --sf-only
+
+# Custom number of questions
+./symfony-certification.phar --php-questions=30 --sf-questions=70
+```
 
 ### Command options
 The exam simulator supports several options to customize your practice session:
@@ -116,7 +128,18 @@ php bin/exam-start --php-only --php-questions=25
   ```
 
 ## Contributing
-### Contributions of any kind are welcome. Suggested guidelines:
+
+### For Contributors
+If you want to contribute to the project, you'll need to clone the repository:
+
+```bash
+git clone https://github.com/raffaelecarelle/symfony-certification-simulator.git
+cd symfony-certification-simulator
+composer install
+```
+
+### Contribution Guidelines
+Contributions of any kind are welcome. Suggested guidelines:
 - Open an issue to propose new questions or to fix existing ones.
 - For PRs that modify the question bank, keep explanations concise and include a reference (sf-doc/php-doc) when possible.
 - Run tests and quality tools locally before opening the PR:
